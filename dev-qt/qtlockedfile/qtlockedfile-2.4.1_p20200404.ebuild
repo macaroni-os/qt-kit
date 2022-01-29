@@ -1,4 +1,3 @@
-# Copyright 1999-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -18,7 +17,7 @@ SRC_URI="https://github.com/qtproject/qt-solutions/archive/${COMMIT_HASH}.tar.gz
 
 LICENSE="|| ( LGPL-2.1 GPL-3 )"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 x86"
+KEYWORDS="*"
 IUSE="doc"
 
 DEPEND="dev-qt/qtcore:5"
@@ -26,8 +25,8 @@ RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack "${A}"
-        mv "qt-solutions-${COMMIT_HASH}/${PN}" "${P}" || die
-        rm -fR "qt-solutions-${COMMIT_HASH}"
+	mv "qt-solutions-${COMMIT_HASH}/${PN}" "${P}" || die
+	rm -fR "qt-solutions-${COMMIT_HASH}"
 }
 
 src_prepare() {

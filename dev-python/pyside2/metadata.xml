@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>leycec@gmail.com</email>
-		<name>leycec</name>
+		<email>zerochaos@gentoo.org</email>
+		<name>Rick Farina</name>
 	</maintainer>
 	<use>
 		<flag name="3d">Build Qt3DCore, Qt3DAnimation, Qt3DExtras, Qt3DInput, Qt3DLogic, and Qt3DRender modules</flag>
@@ -11,7 +11,7 @@
 		<flag name="concurrent">Build QtConcurrent module</flag>
 		<flag name="datavis">Build QtDataVisualization module</flag>
 		<flag name="designer">Build QtDesigner and QtUiTools modules</flag>
-		<flag name="gles2">Build QtGui "QOpenGL*" classes</flag>
+		<flag name="gles2-only">Build QtGui "QOpenGL*" classes</flag>
 		<flag name="gui">Build QtGui module</flag>
 		<flag name="help">Build QtHelp module</flag>
 		<flag name="location">Build QtLocation module</flag>
@@ -37,4 +37,7 @@
 		<flag name="xml">Build QtXml module</flag>
 		<flag name="xmlpatterns">Build QtXmlPatterns module</flag>
 	</use>
+	<upstream>
+		<remote-id type="pypi">PySide2</remote-id>
+	</upstream>
 </pkgmetadata>
