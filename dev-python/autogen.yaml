@@ -1,0 +1,18 @@
+simple_python_autogen_rule:
+  default:
+    cat: dev-python
+    python_compat: python3+
+  generator: pypi-simple-1
+  packages:
+    - PyQt-builder
+    - PyQt5-sip:
+        pypi_name: PyQt5_sip
+
+template_based_autogen_rule:
+  default:
+    cat: dev-python
+    python_compat: python3+
+  generator: pypi-1
+  packages:
+    - PyQt5
+    - PyQtWebEngine
