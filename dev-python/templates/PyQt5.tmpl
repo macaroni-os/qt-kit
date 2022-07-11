@@ -2,30 +2,24 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3+ )
-inherit multibuild python-r1 qmake-utils
+PYTHON_COMPAT=( {{python_compat}} )
+inherit python-r1 qmake-utils
 
 DESCRIPTION="Python bindings for the Qt framework"
-HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt/intro"
-
-MY_P=${PN}-${PV/_pre/.dev}
-if [[ ${PV} == *_pre* ]]; then
-	SRC_URI="https://dev.gentoo.org/~pesa/distfiles/${MY_P}.tar.gz"
-else
-	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
-fi
+HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt/ https://pypi.org/project/PyQt5/"
+SRC_URI="{{artifacts[0].src_uri}}"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 ~ppc ~ppc64 x86"
+KEYWORDS="*"
 
-# TODO: QtNfc, QtQuick3D, QtRemoteObjects, QtTextToSpeech
+# TODO: QtNfc, QtQuick3D, QtRemoteObjects
 IUSE="bluetooth dbus debug declarative designer examples gles2-only gui help location
-	multimedia network networkauth opengl positioning printsupport sensors serialport
-	sql +ssl svg testlib webchannel webkit websockets widgets x11extras xmlpatterns"
+	multimedia network opengl positioning printsupport sensors serialport speech
+	sql +ssl svg testlib webchannel websockets widgets x11extras xmlpatterns"
 
-# The requirements below were extracted from configure.py
-# and from the output of 'grep -r "%Import " "${S}"/sip'
+# The requirements below were extracted from the qmake_QT declarations
+# in project.py and from the output of 'grep -r "%Import " ${S}/sip'
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
 	bluetooth? ( gui )
@@ -34,7 +28,6 @@ REQUIRED_USE="
 	help? ( gui widgets )
 	location? ( positioning )
 	multimedia? ( gui network )
-	networkauth? ( network )
 	opengl? ( gui widgets )
 	positioning? ( gui )
 	printsupport? ( gui widgets )
@@ -44,17 +37,15 @@ REQUIRED_USE="
 	svg? ( gui widgets )
 	testlib? ( widgets )
 	webchannel? ( network )
-	webkit? ( gui network printsupport widgets )
 	websockets? ( network )
 	widgets? ( gui )
 	xmlpatterns? ( network )
 "
 
 # Minimal supported version of Qt.
-QT_PV="5.14:5"
+QT_PV="5.15:5"
 
-RDEPEND="${PYTHON_DEPS}
-	>=dev-python/PyQt5-sip-4.19.23:=[${PYTHON_USEDEP}]
+DEPEND="${PYTHON_DEPS}
 	>=dev-qt/qtcore-${QT_PV}
 	>=dev-qt/qtxml-${QT_PV}
 	bluetooth? ( >=dev-qt/qtbluetooth-${QT_PV} )
@@ -69,91 +60,95 @@ RDEPEND="${PYTHON_DEPS}
 	location? ( >=dev-qt/qtlocation-${QT_PV} )
 	multimedia? ( >=dev-qt/qtmultimedia-${QT_PV}[widgets?] )
 	network? ( >=dev-qt/qtnetwork-${QT_PV}[ssl=] )
-	networkauth? ( >=dev-qt/qtnetworkauth-${QT_PV} )
 	opengl? ( >=dev-qt/qtopengl-${QT_PV} )
 	positioning? ( >=dev-qt/qtpositioning-${QT_PV} )
 	printsupport? ( >=dev-qt/qtprintsupport-${QT_PV} )
 	sensors? ( >=dev-qt/qtsensors-${QT_PV} )
 	serialport? ( >=dev-qt/qtserialport-${QT_PV} )
+	speech? ( >=dev-qt/qtspeech-${QT_PV} )
 	sql? ( >=dev-qt/qtsql-${QT_PV} )
 	svg? ( >=dev-qt/qtsvg-${QT_PV} )
 	testlib? ( >=dev-qt/qttest-${QT_PV} )
 	webchannel? ( >=dev-qt/qtwebchannel-${QT_PV} )
-	webkit? ( dev-qt/qtwebkit:5[printsupport] )
 	websockets? ( >=dev-qt/qtwebsockets-${QT_PV} )
 	widgets? ( >=dev-qt/qtwidgets-${QT_PV} )
 	x11extras? ( >=dev-qt/qtx11extras-${QT_PV} )
 	xmlpatterns? ( >=dev-qt/qtxmlpatterns-${QT_PV} )
 "
-DEPEND="${RDEPEND}
-	>=dev-python/sip-4.19.23[${PYTHON_USEDEP}]
+RDEPEND="${DEPEND}
+	>=dev-python/PyQt5-sip-12.9:=[${PYTHON_USEDEP}]
+"
+BDEPEND="
+	>=dev-python/PyQt-builder-1.10[${PYTHON_USEDEP}]
+	>=dev-python/sip-6.4[${PYTHON_USEDEP}]
+	>=dev-qt/qtcore-${QT_PV}
 	dbus? ( virtual/pkgconfig )
 "
 
-S=${WORKDIR}/${MY_P}
-
-pyqt_use_enable() {
-	use "$1" || return
-
-	if [[ $# -eq 1 ]]; then
-		echo --enable=Qt$(tr 'a-z' 'A-Z' <<< ${1:0:1})${1:1}
-	else
-		shift
-		echo ${@/#/--enable=}
-	fi
-}
-
 src_configure() {
+	pyqt_use_enable() {
+		use "$1" || return
+
+		if [[ $# -eq 1 ]]; then
+			echo --enable=Qt${1^}
+		else
+			shift
+			echo ${@/#/--enable=}
+		fi
+	}
+
 	configuration() {
 		local myconf=(
-			"${PYTHON}"
-			"${S}"/configure.py
-			$(usex debug '--debug --qml-debug --trace' '')
+			sip-build
 			--verbose
 			--confirm-license
+			--build-dir="${BUILD_DIR}"
+			--scripts-dir="$(python_get_scriptdir)"
 			--qmake="$(qt5_get_bindir)"/qmake
-			--bindir="${EPREFIX}/usr/bin"
-			--qsci-api
-			--enable=QtCore
-			--enable=QtXml
+			--no-make
+			$(usex debug '--debug --qml-debug --tracing' '')
+			$(usex dbus '' '--no-dbus-python')
+			$(usex declarative '' '--no-qml-plugin')
+			$(usex designer '' '--no-designer-plugin')
+			$(usex gles2-only '--disabled-feature=PyQt_Desktop_OpenGL' '')
+			$(usex ssl '' '--disabled-feature=PyQt_SSL')
+			--enable=pylupdate
+			--enable=pyrcc
+			--enable=Qt
 			$(pyqt_use_enable bluetooth)
+			--enable=QtCore
 			$(pyqt_use_enable dbus QtDBus)
-			$(usex dbus '' --no-python-dbus)
 			$(pyqt_use_enable declarative QtQml QtQuick $(usex widgets QtQuickWidgets ''))
-			$(usex declarative '' --no-qml-plugin)
 			$(pyqt_use_enable designer)
-			$(usex designer '' --no-designer-plugin)
-			$(usex gles2-only '--disable-feature=PyQt_Desktop_OpenGL' '')
 			$(pyqt_use_enable gui)
 			$(pyqt_use_enable gui $(use gles2-only && echo _QOpenGLFunctions_ES2 || echo _QOpenGLFunctions_{2_0,2_1,4_1_Core}))
 			$(pyqt_use_enable help)
 			$(pyqt_use_enable location)
 			$(pyqt_use_enable multimedia QtMultimedia $(usex widgets QtMultimediaWidgets ''))
 			$(pyqt_use_enable network)
-			$(pyqt_use_enable networkauth QtNetworkAuth)
 			$(pyqt_use_enable opengl QtOpenGL)
 			$(pyqt_use_enable positioning)
 			$(pyqt_use_enable printsupport QtPrintSupport)
 			$(pyqt_use_enable sensors)
 			$(pyqt_use_enable serialport QtSerialPort)
+			$(pyqt_use_enable speech QtTextToSpeech)
 			$(pyqt_use_enable sql)
-			$(usex ssl '' '--disable-feature=PyQt_SSL')
 			$(pyqt_use_enable svg)
 			$(pyqt_use_enable testlib QtTest)
 			$(pyqt_use_enable webchannel QtWebChannel)
-			$(pyqt_use_enable webkit QtWebKit QtWebKitWidgets)
 			$(pyqt_use_enable websockets QtWebSockets)
 			$(pyqt_use_enable widgets)
 			$(pyqt_use_enable x11extras QtX11Extras)
+			--enable=QtXml
 			$(pyqt_use_enable xmlpatterns QtXmlPatterns)
 		)
 		echo "${myconf[@]}"
 		"${myconf[@]}" || die
 
 		# Run eqmake to respect toolchain and build flags
-		eqmake5 -recursive ${PN}.pro
+		run_in_build_dir eqmake5 -recursive ${PN}.pro
 	}
-	python_foreach_impl run_in_build_dir configuration
+	python_foreach_impl configuration
 }
 
 src_compile() {
@@ -162,22 +157,13 @@ src_compile() {
 
 src_install() {
 	installation() {
-		local tmp_root=${D}/${PN}_tmp_root
-		# parallel install fails because mk_distinfo.py runs too early
-		emake -j1 INSTALL_ROOT="${tmp_root}" install
-
-		local bin_dir=${tmp_root}${EPREFIX}/usr/bin
-		local exe
-		for exe in pylupdate5 pyrcc5 pyuic5; do
-			python_doexe "${bin_dir}/${exe}"
-			rm "${bin_dir}/${exe}" || die
-		done
-
-		local uic_dir=${tmp_root}$(python_get_sitedir)/${PN}/uic
-		rm -r "${uic_dir}"/port_v2 || die
-
-		multibuild_merge_root "${tmp_root}" "${D}"
+		emake INSTALL_ROOT="${D}" install
 		python_optimize
+
+		local exe
+		for exe in "${D}$(python_get_scriptdir)"/*; do
+			python_doexe "${exe}"
+		done
 	}
 	python_foreach_impl run_in_build_dir installation
 
