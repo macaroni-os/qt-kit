@@ -7,7 +7,7 @@ inherit python-r1 qmake-utils
 
 DESCRIPTION="Python bindings for QtWebEngine"
 HOMEPAGE="https://www.riverbankcomputing.com/software/pyqtwebengine/ https://pypi.org/project/PyQtWebEngine/"
-SRC_URI=""
+SRC_URI="https://files.pythonhosted.org/packages/cf/4b/ca01d875eff114ba5221ce9311912fbbc142b7bb4cbc4435e04f4f1f73cb/PyQtWebEngine-5.15.6.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
