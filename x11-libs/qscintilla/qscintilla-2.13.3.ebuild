@@ -8,8 +8,8 @@ DESCRIPTION="Qt port of Neil Hodgson's Scintilla C++ editor control"
 HOMEPAGE="https://www.riverbankcomputing.com/software/qscintilla/intro"
 
 MY_PN=QScintilla
-MY_P=${MY_PN}-${PV/_pre/.dev}
-SRC_URI=https://www.riverbankcomputing.com/static/Downloads/QScintilla/${PV}/QScintilla-${PV}.tar.gz
+MY_P=${MY_PN}_src-${PV/_pre/.dev}
+SRC_URI=https://www.riverbankcomputing.com/static/Downloads/QScintilla/${PV}/QScintilla_src-${PV}.tar.gz
 
 LICENSE="GPL-3"
 SLOT="0/15"
@@ -32,7 +32,7 @@ src_unpack() {
 
 	# Sub-slot sanity check
 	local subslot=${SLOT#*/}
-	local version=$(sed -nre 's:.*VERSION\s*=\s*([0-9\.]+):\1:p' "${S}"/Qt4Qt5/qscintilla.pro || die)
+	local version=$(sed -nre 's:.*VERSION\s*=\s*([0-9\.]+):\1:p' "${S}"/src/qscintilla.pro || die)
 	local major=${version%%.*}
 	if [[ ${subslot} != ${major} ]]; then
 		eerror
@@ -54,24 +54,24 @@ qsci_run_in() {
 src_configure() {
 	if use designer; then
 		# prevent building against system version (bug 466120)
-		append-cxxflags -I../Qt4Qt5
-		append-ldflags -L../Qt4Qt5
+		append-cxxflags -I../src
+		append-ldflags -L../src
 	fi
 
-	qsci_run_in Qt4Qt5 eqmake5
-	use designer && qsci_run_in designer-Qt4Qt5 eqmake5
+	qsci_run_in src eqmake5
+	use designer && qsci_run_in designer eqmake5
 }
 
 src_compile() {
-	qsci_run_in Qt4Qt5 emake
-	use designer && qsci_run_in designer-Qt4Qt5 emake
+	qsci_run_in src emake
+	use designer && qsci_run_in designer emake
 }
 
 src_install() {
-	qsci_run_in Qt4Qt5 emake INSTALL_ROOT="${D}" install
-	use designer && qsci_run_in designer-Qt4Qt5 emake INSTALL_ROOT="${D}" install
+	qsci_run_in src emake INSTALL_ROOT="${D}" install
+	use designer && qsci_run_in designer emake INSTALL_ROOT="${D}" install
 
 	DOCS=( ChangeLog NEWS )
-	use doc && HTML_DOCS=( doc/html-Qt4Qt5/. )
+	use doc && HTML_DOCS=( doc/html/. )
 	einstalldocs
 }
