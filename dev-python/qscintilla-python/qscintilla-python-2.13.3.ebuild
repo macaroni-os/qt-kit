@@ -2,15 +2,15 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2+ )
+PYTHON_COMPAT=( python3+ )
 inherit python-r1 qmake-utils
 
 DESCRIPTION="Python bindings for QScintilla"
 HOMEPAGE="https://www.riverbankcomputing.com/software/qscintilla/intro"
 
 MY_PN=QScintilla
-MY_P=${MY_PN}-${PV/_pre/.dev}
-SRC_URI=https://www.riverbankcomputing.com/static/Downloads/QScintilla/${PV}/QScintilla-${PV}.tar.gz
+MY_P=${MY_PN}_src-${PV/_pre/.dev}
+SRC_URI=https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.3/QScintilla_src-2.13.3.tar.gz
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -22,39 +22,42 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 RDEPEND="
 	${PYTHON_DEPS}
 	>=dev-python/PyQt5-5.12[gui,printsupport,widgets,${PYTHON_USEDEP}]
-	>=dev-python/PyQt5-sip-4.19.14:=[${PYTHON_USEDEP}]
+	>=dev-python/PyQt5-sip-6.6.2:=[${PYTHON_USEDEP}]
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtprintsupport:5
 	dev-qt/qtwidgets:5
-	~x11-libs/qscintilla-${PV}:=
+	~dev-qt/qscintilla-${PV}:=
 "
 DEPEND="${RDEPEND}
-	>=dev-python/sip-4.19.14[${PYTHON_USEDEP}]
+	>=dev-python/sip-6.6.2[${PYTHON_USEDEP}]
 "
 
 S=${WORKDIR}/${MY_P}/Python
 
+src_prepare() {
+	default
+	mv pyproject{-qt5,}.toml || die
+}
+
 src_configure() {
 	configuration() {
 		local myconf=(
-			"${PYTHON}"
-			"${S}"/configure.py
-			--pyqt=PyQt5
-			--qmake="$(qt5_get_bindir)"/qmake
-			$(usex debug '--debug --trace' '')
+			sip-build
 			--verbose
+			--build-dir="${BUILD_DIR}"
+			--scripts-dir="$(python_get_scriptdir)"
+			--qmake="$(qt5_get_bindir)"/qmake
+			--no-make
+			$(usev debug '--debug --tracing')
 		)
 		echo "${myconf[@]}"
 		"${myconf[@]}" || die
 
-		# Fix parallel install failure
-		sed -i -e '/INSTALLS += distinfo/i distinfo.depends = install_subtargets' ${MY_PN}.pro || die
-
 		# Run eqmake to respect toolchain and build flags
-		eqmake5 -recursive ${MY_PN}.pro
+		run_in_build_dir eqmake5 -recursive ${MY_PN}.pro
 	}
-	python_foreach_impl run_in_build_dir configuration
+	python_foreach_impl configuration
 }
 
 src_compile() {
