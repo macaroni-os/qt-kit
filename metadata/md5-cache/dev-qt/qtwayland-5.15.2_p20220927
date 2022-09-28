@@ -10,6 +10,6 @@ LICENSE=|| ( GPL-2 GPL-3 LGPL-3 ) FDL-1.3
 RDEPEND=dev-libs/wayland =dev-qt/qtcore-5.15.2*:5= =dev-qt/qtdeclarative-5.15.2*:5= =dev-qt/qtgui-5.15.2*:5=[egl,libinput,vulkan=,X?] media-libs/libglvnd >=x11-libs/libxkbcommon-0.2.0 vulkan? ( dev-util/vulkan-headers ) X? ( =dev-qt/qtgui-5.15.2*[-gles2-only] x11-libs/libX11 x11-libs/libXcomposite )
 RESTRICT=test
 SLOT=5/5.15.2
-SRC_URI=https://invent.kde.org/qt/qt/qtwayland/-/archive/31241d7fb6a7ffb8f56bc8ac35ed9f3bc61735b5/qtwayland-31241d7fb6a7ffb8f56bc8ac35ed9f3bc61735b5.tar.bz2 -> qtwayland-31241d7fb6a7ffb8f56bc8ac35ed9f3bc61735b5.tar.bz2
+SRC_URI=https://invent.kde.org/qt/qt/qtwayland/-/archive/8faf74a7966b520f0ac3eb4d88235f8ec63b31b8/qtwayland-8faf74a7966b520f0ac3eb4d88235f8ec63b31b8.tar.bz2 -> qtwayland-8faf74a7966b520f0ac3eb4d88235f8ec63b31b8.tar.bz2
 _eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	kde.org	2c51d68845490f23d6f76d49cabdac5d	multilib	d410501a125f99ffb560b0c523cd3d1e	qt5-build	ce4c233ea772c3d2901fdb552980f2f7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5
-_md5_=f13ee36151d57e79b507de8e8b8853df
+_md5_=9bf2d7b8f7296d03aefdb1ec3e1a8f23
