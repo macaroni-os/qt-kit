@@ -64,15 +64,15 @@ RDEPEND="
 	x11-libs/libXScrnSaver
 	x11-libs/libXtst
 	alsa? ( media-libs/alsa-lib )
-	designer? ( ~dev-qt/designer-${QTVER} )
-	geolocation? ( ~dev-qt/qtpositioning-${QTVER} )
+	designer? ( =dev-qt/designer-${QTVER}* )
+	geolocation? ( =dev-qt/qtpositioning-${QTVER}* )
 	kerberos? ( virtual/krb5 )
 	pulseaudio? ( media-sound/pulseaudio:= )
 	system-ffmpeg? ( media-video/ffmpeg:0= )
 	system-icu? ( >=dev-libs/icu-67.1:= )
 	widgets? (
-		~dev-qt/qtdeclarative-${QTVER}[widgets]
-		~dev-qt/qtwidgets-${QTVER}
+		=dev-qt/qtdeclarative-${QTVER}*[widgets]
+		=dev-qt/qtwidgets-${QTVER}*
 	)
 "
 DEPEND="${RDEPEND}"
