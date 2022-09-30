@@ -4,20 +4,25 @@ EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 QTVER="5.15.2"
-C_COMMIT="eaffb82d5ee99ea1db8c0d4d359bbc72e77f065b"
+
+C_COMMIT="8c0a9b4459f5200a24ab9e687a3fb32e975382e5"
+
+V8_VER="9.5.172"
+V8_COMMIT="4a03d61accede9dd0e3e6dc0456ff5a0e3f792b4"
 
 inherit multiprocessing python-any-r1 qt5-build
 
 DESCRIPTION="Library for rendering dynamic web content in Qt5 C++ and QML applications"
 HOMEPAGE="https://www.qt.io/"
 SRC_URI="https://github.com/qt/${PN}/archive/refs/tags/v${PV}-lts.tar.gz -> ${P}.tar.gz
-	https://github.com/qt/${PN}-chromium/archive/${C_COMMIT}.tar.gz -> ${PN}-chromium-${PV}.tar.gz"
+	https://github.com/qt/${PN}-chromium/archive/${C_COMMIT}.tar.gz -> ${PN}-chromium-${PV}.tar.gz
+	https://github.com/v8/v8/archive/${V8_COMMIT}.tar.gz -> ${PN}-v8-${V8_VER}.tar.gz"
 
 # patchset based on https://github.com/chromium-ppc64le releases
 SRC_URI+=" ppc64? ( https://dev.gentoo.org/~gyakovlev/distfiles/${PN}-5.15.2-chromium87-ppc64le.tar.xz )"
 
-KEYWORDS="*"
-IUSE="alsa bindist designer geolocation kerberos pulseaudio +system-ffmpeg +system-icu widgets"
+KEYWORDS="next"
+IUSE="alsa bindist designer geolocation kerberos pulseaudio +memsaver +system-ffmpeg +system-icu +jumbo-build widgets"
 REQUIRED_USE="designer? ( widgets )"
 
 RDEPEND="
@@ -30,12 +35,12 @@ RDEPEND="
 	dev-libs/libxml2[icu]
 	dev-libs/libxslt
 	dev-libs/re2:=
-	~dev-qt/qtcore-${QTVER}
-	~dev-qt/qtdeclarative-${QTVER}
-	~dev-qt/qtgui-${QTVER}
-	~dev-qt/qtnetwork-${QTVER}
-	~dev-qt/qtprintsupport-${QTVER}
-	~dev-qt/qtwebchannel-${QTVER}[qml]
+	=dev-qt/qtcore-${QTVER}*
+	=dev-qt/qtdeclarative-${QTVER}*
+	=dev-qt/qtgui-${QTVER}*
+	=dev-qt/qtnetwork-${QTVER}*
+	=dev-qt/qtprintsupport-${QTVER}*
+	=dev-qt/qtwebchannel-${QTVER}*[qml]
 	media-libs/fontconfig
 	media-libs/freetype
 	media-libs/harfbuzz:=
@@ -51,6 +56,7 @@ RDEPEND="
 	sys-libs/zlib[minizip]
 	virtual/libudev
 	x11-libs/libdrm
+	x11-libs/libxkbfile
 	x11-libs/libX11
 	x11-libs/libXcomposite
 	x11-libs/libXcursor
@@ -62,16 +68,17 @@ RDEPEND="
 	x11-libs/libXrender
 	x11-libs/libXScrnSaver
 	x11-libs/libXtst
+	x11-libs/libxkbfile
 	alsa? ( media-libs/alsa-lib )
-	designer? ( ~dev-qt/designer-${QTVER} )
-	geolocation? ( ~dev-qt/qtpositioning-${QTVER} )
+	designer? ( =dev-qt/designer-${QTVER}* )
+	geolocation? ( =dev-qt/qtpositioning-${QTVER}* )
 	kerberos? ( virtual/krb5 )
 	pulseaudio? ( media-sound/pulseaudio:= )
 	system-ffmpeg? ( media-video/ffmpeg:0= )
-	system-icu? ( >=dev-libs/icu-67.1:= )
+	system-icu? ( >=dev-libs/icu-69.1:= )
 	widgets? (
-		~dev-qt/qtdeclarative-${QTVER}[widgets]
-		~dev-qt/qtwidgets-${QTVER}
+		=dev-qt/qtdeclarative-${QTVER}*[widgets]
+		=dev-qt/qtwidgets-${QTVER}*
 	)
 "
 DEPEND="${RDEPEND}"
@@ -86,9 +93,7 @@ BDEPEND="${PYTHON_DEPS}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.15.0-disable-fatal-warnings.patch" # bug 695446
-	"${FILESDIR}/${PN}-5.15.2_p20210224-chromium-87-v8-icu68.patch" # downstream, bug 757606
 	"${FILESDIR}/${PN}-5.15.2_p20210224-disable-git.patch" # downstream snapshot fix
-	"${FILESDIR}/${PN}-5.15.2_p20210406-glibc-2.33.patch" # by Fedora, bug 769989
 	"${FILESDIR}/${PN}-5.15.2_p20210521-gcc11.patch" # by Fedora, bug 768261
 )
 
@@ -98,9 +103,50 @@ src_unpack() {
 	default
 	rm -rf "${S}"/src/3rdparty
 	mv qtwebengine-chromium-* "${S}"/src/3rdparty || die
+	
+	# Unknown how upgrading v8 interplays with the ppc64 patches, so don't do it there.
+	if ! use ppc64; then
+		rm -rf "${S}"/src/3rdparty/chromium/v8
+		mv v8-* "${S}"/src/3rdparty/chromium/v8 || die
+	fi
 }
 
 src_prepare() {
+
+	if use memsaver; then
+
+		# limit number of jobs based on available memory:
+
+		mem=$(grep ^MemTotal /proc/meminfo | awk '{print $2}')
+		jobs=$((mem/1750000))
+
+		# don't use more jobs than physical cores:
+		if [ -e /sys/devices/system/cpu/possible ]; then
+			physical_cores=$(lscpu | grep 'Core(s) per socket:' | awk '{ print $NF }')
+			cpus=$(lscpu | grep '^Socket(s):' | awk '{ print $NF }')
+			# actual physical cores, without considering hyperthreading:
+			max_parallelism=$(( $physical_cores * $cpus ))
+		else
+			max_parallelism=999
+		fi
+
+		if [ ${jobs} -lt 1 ]; then
+			einfo "Using jobs setting of 1 (limited by memory)"
+			jobs=-j1
+		elif [ ${jobs} -gt ${max_parallelism} ]; then
+			einfo "Using jobs setting of ${max_parallelism} (limited by physical cores)"
+			jobs=-j${max_parallelism}
+		else
+			einfo "Using jobs setting of ${jobs} (limited by memory)"
+			jobs=-j${jobs}
+		fi
+	else
+		jobs="-j$(makeopts_jobs)"
+		einfo "Using default Portage jobs setting."
+	fi
+	# Final link uses lots of file descriptors.
+	ulimit -n 2048
+
 	# This is made from git, and for some reason will fail w/o .git directories.
 	mkdir -p .git src/3rdparty/chromium/.git || die
 
@@ -108,14 +154,13 @@ src_prepare() {
 	# Otherwise revdeps fail w/o heavy changes. This is the simplest way to do it.
 	sed -e "/^MODULE_VERSION/s/5.*/${QTVER}/" -i .qmake.conf || die
 
-	# QTBUG-88657 - jumbo-build is broken
-	#if ! use jumbo-build; then
+	if ! use jumbo-build; then
 		sed -i -e 's|use_jumbo_build=true|use_jumbo_build=false|' \
 			src/buildtools/config/common.pri || die
-	#fi
+	fi
 
 	# bug 630834 - pass appropriate options to ninja when building GN
-	sed -e "s/\['ninja'/&, '-j$(makeopts_jobs)', '-l$(makeopts_loadavg "${MAKEOPTS}" 0)', '-v'/" \
+	sed -e "s/\['ninja'/&, '${jobs}', '-l$(makeopts_loadavg "${MAKEOPTS}" 0)', '-v'/" \
 		-i src/3rdparty/chromium/tools/gn/bootstrap/bootstrap.py || die
 
 	# bug 620444 - ensure local headers are used
@@ -144,7 +189,13 @@ src_prepare() {
 
 	qt5-build_src_prepare
 
-	# we need to generate ppc64 stuff because upstream does not ship it yet
+	# Unknown how upgrading v8 interplays with the ppc64 patches, so don't do it there.
+	if ! use ppc64; then
+		einfo "Patching for v8 ${V8_VER}"
+		eapply "${FILESDIR}/${PN}-5.15.7-v8-9.5.172.patch"
+	fi
+
+	# We need to generate ppc64 stuff as upstream does not ship it yet
 	if use ppc64; then
 		einfo "Patching for ppc64le and generating build files"
 		eapply "${FILESDIR}/qtwebengine-5.15.2-enable-ppc64.patch"
@@ -157,12 +208,19 @@ src_prepare() {
 		touch source/libvpx/test/test.mk || die
 		./generate_gni.sh || die
 		popd >/dev/null || die
+	# We need to patch for riscv64 as upstream does not ship it yet
+	elif use riscv64; then
+		einfo "Patching for riscv64"
+		eapply "${FILESDIR}/qtwebengine-5.15.7-enable-riscv64-qtwebengine.patch"
+		pushd src/3rdparty > /dev/null || die
+		eapply "${FILESDIR}/qtwebengine-5.15.7-enable-riscv64-chromium.patch"
+		popd > /dev/null || die
 	fi
 }
 
 src_configure() {
 	export NINJA_PATH=/usr/bin/ninja
-	export NINJAFLAGS="${NINJAFLAGS:--j$(makeopts_jobs) -l$(makeopts_loadavg "${MAKEOPTS}" 0) -v}"
+	export NINJAFLAGS="${NINJAFLAGS:-${jobs} -l$(makeopts_loadavg "${MAKEOPTS}" 0) -v}"
 
 	local myqmakeargs=(
 		--
@@ -186,6 +244,6 @@ src_install() {
 
 	# bug 601472
 	if [[ ! -f ${D}${QT5_LIBDIR}/libQt5WebEngine.so ]]; then
-		die "${CATEGORY}/${PF} failed to build anything. Please report to https://bugs.gentoo.org/"
+		die "${CATEGORY}/${PF} failed to build anything. Please report to https://bugs.funtoo.org/"
 	fi
 }
