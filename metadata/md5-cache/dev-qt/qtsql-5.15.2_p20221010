@@ -11,6 +11,6 @@ RDEPEND==dev-qt/qtcore-5.15.2*:5= freetds? ( dev-db/freetds ) mysql? ( dev-db/my
 REQUIRED_USE=|| ( freetds mysql oci8 odbc postgres sqlite )
 RESTRICT=test
 SLOT=5/5.15.2
-SRC_URI=https://invent.kde.org/qt/qt/qtbase/-/archive/e44097b63d17ba3178a637df7fac51ddc51cb48b/qtbase-e44097b63d17ba3178a637df7fac51ddc51cb48b.tar.bz2 -> qtbase-e44097b63d17ba3178a637df7fac51ddc51cb48b.tar.bz2
+SRC_URI=https://invent.kde.org/qt/qt/qtbase/-/archive/23996edc504e9e5b5b0ec907380598bbe4bf591c/qtbase-23996edc504e9e5b5b0ec907380598bbe4bf591c.tar.bz2 -> qtbase-23996edc504e9e5b5b0ec907380598bbe4bf591c.tar.bz2
 _eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	kde.org	2c51d68845490f23d6f76d49cabdac5d	multilib	d410501a125f99ffb560b0c523cd3d1e	qt5-build	ce4c233ea772c3d2901fdb552980f2f7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5
-_md5_=5f0f59cd9f882b9b46d0ccea5c5999ef
+_md5_=7db18f0bed9fc28f2aab242a1a1612ea
