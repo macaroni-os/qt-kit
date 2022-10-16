@@ -81,6 +81,7 @@ CHECKREQS_DISK_BUILD="16G" # bug 417307
 PATCHES=(
 	"${FILESDIR}/qtwebkit-5.212.0_pre20190629-glib2.patch"
 	"${FILESDIR}/qtwebkit-5.212.0_pre20200309-icu-68.patch"
+	"${FILESDIR}/qtwebkit-5.212.0_pre20200309-python-3.9.patch"
 )
 
 _check_reqs() {
