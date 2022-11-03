@@ -11,6 +11,6 @@ RDEPEND==dev-qt/qtcore-5.15.2*:5= =dev-qt/qtgui-5.15.2*:5=[gles2-only=,png=,X?] 
 REQUIRED_USE=gtk? ( dbus )
 RESTRICT=test
 SLOT=5/5.15
-SRC_URI=https://invent.kde.org/qt/qt/qtbase/-/archive/98c727f273fc83c24550274bd2728e1aafbd213a/qtbase-98c727f273fc83c24550274bd2728e1aafbd213a.tar.bz2 -> qtbase-98c727f273fc83c24550274bd2728e1aafbd213a.tar.bz2
+SRC_URI=https://invent.kde.org/qt/qt/qtbase/-/archive/08be11284246455bce4455138ebe396d2d8732a1/qtbase-08be11284246455bce4455138ebe396d2d8732a1.tar.bz2 -> qtbase-08be11284246455bce4455138ebe396d2d8732a1.tar.bz2
 _eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	kde.org	2c51d68845490f23d6f76d49cabdac5d	multilib	d410501a125f99ffb560b0c523cd3d1e	qt5-build	ce4c233ea772c3d2901fdb552980f2f7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5
-_md5_=604aded85bb1481f46fce4139302d45b
+_md5_=2ca645d252138a2bd342466ead5e01f8
