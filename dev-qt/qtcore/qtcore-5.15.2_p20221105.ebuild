@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="08be11284246455bce4455138ebe396d2d8732a1"
+KDE_ORG_COMMIT="f8472fd9565f31d809333306422ec14117014cdb"
 
 QT5_MODULE="qtbase"
 inherit linux-info qt5-build
 
 DESCRIPTION="Cross-platform application development framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/08be11284246455bce4455138ebe396d2d8732a1/qtbase-08be11284246455bce4455138ebe396d2d8732a1.tar.bz2 -> qtbase-08be11284246455bce4455138ebe396d2d8732a1.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/f8472fd9565f31d809333306422ec14117014cdb/qtbase-f8472fd9565f31d809333306422ec14117014cdb.tar.bz2 -> qtbase-f8472fd9565f31d809333306422ec14117014cdb.tar.bz2"
 SLOT=5/5.15.2
 
 KEYWORDS="*"
