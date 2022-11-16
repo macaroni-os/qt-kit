@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="1b83a9c73d6e5459ec4c2221b2bd7e5396b5e874"
+KDE_ORG_COMMIT="adbc372b890ed90f006a6c4f3ca56bf0cba477ef"
 
 inherit qt5-build
 
 DESCRIPTION="Additional format plugins for the Qt image I/O system"
-SRC_URI="https://invent.kde.org/qt/qt/qtimageformats/-/archive/1b83a9c73d6e5459ec4c2221b2bd7e5396b5e874/qtimageformats-1b83a9c73d6e5459ec4c2221b2bd7e5396b5e874.tar.bz2 -> qtimageformats-1b83a9c73d6e5459ec4c2221b2bd7e5396b5e874.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtimageformats/-/archive/adbc372b890ed90f006a6c4f3ca56bf0cba477ef/qtimageformats-adbc372b890ed90f006a6c4f3ca56bf0cba477ef.tar.bz2 -> qtimageformats-adbc372b890ed90f006a6c4f3ca56bf0cba477ef.tar.bz2"
 
 KEYWORDS="*"
 
