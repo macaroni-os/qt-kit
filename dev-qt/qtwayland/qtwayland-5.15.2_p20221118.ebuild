@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="4b43f2dc58e71732ebdbe1eaf4392272bc692e6d"
+KDE_ORG_COMMIT="5ac65f91431c0f711ffc9b49b92a019e979d02dc"
 
 inherit qt5-build
 
 DESCRIPTION="Wayland platform plugin for Qt"
-SRC_URI="https://invent.kde.org/qt/qt/qtwayland/-/archive/4b43f2dc58e71732ebdbe1eaf4392272bc692e6d/qtwayland-4b43f2dc58e71732ebdbe1eaf4392272bc692e6d.tar.bz2 -> qtwayland-4b43f2dc58e71732ebdbe1eaf4392272bc692e6d.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtwayland/-/archive/5ac65f91431c0f711ffc9b49b92a019e979d02dc/qtwayland-5ac65f91431c0f711ffc9b49b92a019e979d02dc.tar.bz2 -> qtwayland-5ac65f91431c0f711ffc9b49b92a019e979d02dc.tar.bz2"
 SLOT=5/5.15.2 # bug 815646
 
 KEYWORDS="*"
