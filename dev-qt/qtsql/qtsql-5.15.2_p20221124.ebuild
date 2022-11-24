@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="c738daed73482e2990187ff2a6c12690e73002fe"
+KDE_ORG_COMMIT="537118b6ff14d73a7d0154a54354a06ab53f65a1"
 
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="SQL abstraction library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/c738daed73482e2990187ff2a6c12690e73002fe/qtbase-c738daed73482e2990187ff2a6c12690e73002fe.tar.bz2 -> qtbase-c738daed73482e2990187ff2a6c12690e73002fe.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/537118b6ff14d73a7d0154a54354a06ab53f65a1/qtbase-537118b6ff14d73a7d0154a54354a06ab53f65a1.tar.bz2 -> qtbase-537118b6ff14d73a7d0154a54354a06ab53f65a1.tar.bz2"
 SLOT=5/5.15.2 # bug 639140
 
 KEYWORDS="*"
