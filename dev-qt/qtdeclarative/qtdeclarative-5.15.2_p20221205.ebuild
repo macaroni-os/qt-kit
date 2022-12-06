@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="959b1ac3b7c699ef67ec81155e6e1e579d4e1df7"
+KDE_ORG_COMMIT="f697f2e1a4c5f60f3f09ae7d2e3d3dcd20854aef"
 
 PYTHON_COMPAT=( python3_7 python3_8 python3_9 python3_10 )
 inherit python-any-r1 qt5-build
 
 DESCRIPTION="The QML and Quick modules for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtdeclarative/-/archive/959b1ac3b7c699ef67ec81155e6e1e579d4e1df7/qtdeclarative-959b1ac3b7c699ef67ec81155e6e1e579d4e1df7.tar.bz2 -> qtdeclarative-959b1ac3b7c699ef67ec81155e6e1e579d4e1df7.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtdeclarative/-/archive/f697f2e1a4c5f60f3f09ae7d2e3d3dcd20854aef/qtdeclarative-f697f2e1a4c5f60f3f09ae7d2e3d3dcd20854aef.tar.bz2 -> qtdeclarative-f697f2e1a4c5f60f3f09ae7d2e3d3dcd20854aef.tar.bz2"
 
 KEYWORDS="*"
 
