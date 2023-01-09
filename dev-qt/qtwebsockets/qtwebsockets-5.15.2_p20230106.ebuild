@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="63fb8da1ecf8e48262cd515690cf71a425f92bf5"
+KDE_ORG_COMMIT="90f3590c3c49a0820462af9a778dd13d8df42244"
 
 inherit qt5-build
 
 DESCRIPTION="Implementation of the WebSocket protocol for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtwebsockets/-/archive/63fb8da1ecf8e48262cd515690cf71a425f92bf5/qtwebsockets-63fb8da1ecf8e48262cd515690cf71a425f92bf5.tar.bz2 -> qtwebsockets-63fb8da1ecf8e48262cd515690cf71a425f92bf5.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtwebsockets/-/archive/90f3590c3c49a0820462af9a778dd13d8df42244/qtwebsockets-90f3590c3c49a0820462af9a778dd13d8df42244.tar.bz2 -> qtwebsockets-90f3590c3c49a0820462af9a778dd13d8df42244.tar.bz2"
 
 KEYWORDS="*"
 
