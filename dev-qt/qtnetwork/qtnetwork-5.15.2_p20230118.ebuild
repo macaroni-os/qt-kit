@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="fa8dee92201448cc4eaa92f222b93d0b044d8ea5"
+KDE_ORG_COMMIT="e40c42e4910574fd8d1b16e92e438bbbd03cf2d4"
 
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="Network abstraction library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/fa8dee92201448cc4eaa92f222b93d0b044d8ea5/qtbase-fa8dee92201448cc4eaa92f222b93d0b044d8ea5.tar.bz2 -> qtbase-fa8dee92201448cc4eaa92f222b93d0b044d8ea5.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/e40c42e4910574fd8d1b16e92e438bbbd03cf2d4/qtbase-e40c42e4910574fd8d1b16e92e438bbbd03cf2d4.tar.bz2 -> qtbase-e40c42e4910574fd8d1b16e92e438bbbd03cf2d4.tar.bz2"
 
 KEYWORDS="*"
 
