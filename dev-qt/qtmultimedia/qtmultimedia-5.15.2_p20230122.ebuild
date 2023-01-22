@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="0d7cc33ac1404758886acef4f804b788c6774e98"
+KDE_ORG_COMMIT="e31193957e4d805a3fdc66a17c6806e0eaa8cd22"
 
 inherit qt5-build
 
 DESCRIPTION="Multimedia (audio, video, radio, camera) library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtmultimedia/-/archive/0d7cc33ac1404758886acef4f804b788c6774e98/qtmultimedia-0d7cc33ac1404758886acef4f804b788c6774e98.tar.bz2 -> qtmultimedia-0d7cc33ac1404758886acef4f804b788c6774e98.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtmultimedia/-/archive/e31193957e4d805a3fdc66a17c6806e0eaa8cd22/qtmultimedia-e31193957e4d805a3fdc66a17c6806e0eaa8cd22.tar.bz2 -> qtmultimedia-e31193957e4d805a3fdc66a17c6806e0eaa8cd22.tar.bz2"
 
 KEYWORDS="*"
 
