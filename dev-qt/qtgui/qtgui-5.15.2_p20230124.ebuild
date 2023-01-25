@@ -2,12 +2,12 @@
 
 EAPI=7
 
-KDE_ORG_COMMIT="e40c42e4910574fd8d1b16e92e438bbbd03cf2d4"
+KDE_ORG_COMMIT="a644d25e86ec9612a935b52219f32534f386ebcb"
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/e40c42e4910574fd8d1b16e92e438bbbd03cf2d4/qtbase-e40c42e4910574fd8d1b16e92e438bbbd03cf2d4.tar.bz2 -> qtbase-e40c42e4910574fd8d1b16e92e438bbbd03cf2d4.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/a644d25e86ec9612a935b52219f32534f386ebcb/qtbase-a644d25e86ec9612a935b52219f32534f386ebcb.tar.bz2 -> qtbase-a644d25e86ec9612a935b52219f32534f386ebcb.tar.bz2"
 SLOT=5/5.15.2 # bug 707658
 
 KEYWORDS="*"
