@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="a644d25e86ec9612a935b52219f32534f386ebcb"
+KDE_ORG_COMMIT="89d71821a7b48bff147d62c7e46696080af382d1"
 
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="Qt5 module for inter-process communication over the D-Bus protocol"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/a644d25e86ec9612a935b52219f32534f386ebcb/qtbase-a644d25e86ec9612a935b52219f32534f386ebcb.tar.bz2 -> qtbase-a644d25e86ec9612a935b52219f32534f386ebcb.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/89d71821a7b48bff147d62c7e46696080af382d1/qtbase-89d71821a7b48bff147d62c7e46696080af382d1.tar.bz2 -> qtbase-89d71821a7b48bff147d62c7e46696080af382d1.tar.bz2"
 
 KEYWORDS="*"
 
