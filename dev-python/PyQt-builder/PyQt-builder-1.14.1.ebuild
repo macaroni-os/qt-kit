@@ -7,7 +7,7 @@ inherit distutils-r1
 
 DESCRIPTION=""
 HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt-builder/ https://pypi.org/project/PyQt-builder/"
-SRC_URI="https://files.pythonhosted.org/packages/3e/ed/fa5ffe4a72903747cdd5860a46483795edc0b70562015dde42724e9ce00f/PyQt-builder-1.14.0.tar.gz -> PyQt-builder-1.14.0.tar.gz
+SRC_URI="https://files.pythonhosted.org/packages/21/6c/685981114cb350f2f8e4a0827aa7f60f142e15816aa48f3204e5a1e2578c/PyQt-builder-1.14.1.tar.gz -> PyQt-builder-1.14.1.tar.gz
 "
 
 DEPEND=""
@@ -17,4 +17,4 @@ IUSE=""
 SLOT="0"
 LICENSE=""
 KEYWORDS="*"
-S="${WORKDIR}/PyQt-builder-1.14.0"
+S="${WORKDIR}/PyQt-builder-1.14.1"
