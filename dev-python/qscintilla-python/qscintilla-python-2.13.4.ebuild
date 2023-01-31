@@ -10,7 +10,7 @@ HOMEPAGE="https://www.riverbankcomputing.com/software/qscintilla/intro"
 
 MY_PN=QScintilla
 MY_P=${MY_PN}_src-${PV/_pre/.dev}
-SRC_URI="https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.3/QScintilla_src-2.13.3.tar.gz -> QScintilla_src-2.13.3.tar.gz"
+SRC_URI="https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.4/QScintilla_src-2.13.4.tar.gz -> QScintilla_src-2.13.4.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
