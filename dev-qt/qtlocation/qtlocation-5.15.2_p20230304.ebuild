@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="f991e28cb0a670597f1955585c76ce8a26ce9e4b"
+KDE_ORG_COMMIT="435f931a7e42172e12ceba8f0d9da06ba4ec0bee"
 
 inherit qt5-build
 
 DESCRIPTION="Location (places, maps, navigation) library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtlocation/-/archive/f991e28cb0a670597f1955585c76ce8a26ce9e4b/qtlocation-f991e28cb0a670597f1955585c76ce8a26ce9e4b.tar.bz2 -> qtlocation-f991e28cb0a670597f1955585c76ce8a26ce9e4b.tar.bz2
-		https://invent.kde.org/qt/qt/qtlocation-mapboxgl/-/archive/d3101bbc22edd41c9036ea487d4a71eabd97823d/qtlocation-mapboxgl-f991e28cb0a670597f1955585c76ce8a26ce9e4b.tar.bz2 -> qtlocation-mapboxgl-5.15.2-f991e28c.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtlocation/-/archive/435f931a7e42172e12ceba8f0d9da06ba4ec0bee/qtlocation-435f931a7e42172e12ceba8f0d9da06ba4ec0bee.tar.bz2 -> qtlocation-435f931a7e42172e12ceba8f0d9da06ba4ec0bee.tar.bz2
+		https://invent.kde.org/qt/qt/qtlocation-mapboxgl/-/archive/d3101bbc22edd41c9036ea487d4a71eabd97823d/qtlocation-mapboxgl-435f931a7e42172e12ceba8f0d9da06ba4ec0bee.tar.bz2 -> qtlocation-mapboxgl-5.15.2-435f931a.tar.bz2"
 
 KEYWORDS="*"
 
