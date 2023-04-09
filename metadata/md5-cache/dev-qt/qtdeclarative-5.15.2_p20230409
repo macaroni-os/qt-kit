@@ -10,6 +10,6 @@ LICENSE=|| ( GPL-2 GPL-3 LGPL-3 ) FDL-1.3
 RDEPEND==dev-qt/qtcore-5.15.2* =dev-qt/qtgui-5.15.2*:5=[gles2-only=,vulkan=] =dev-qt/qtnetwork-5.15.2* =dev-qt/qttest-5.15.2* media-libs/libglvnd localstorage? ( =dev-qt/qtsql-5.15.2* ) widgets? ( =dev-qt/qtwidgets-5.15.2*[gles2-only=] )
 RESTRICT=test
 SLOT=5/5.15
-SRC_URI=https://invent.kde.org/qt/qt/qtdeclarative/-/archive/0e1bed3c3e27d44d86d6f68a8b93b96a4821575c/qtdeclarative-0e1bed3c3e27d44d86d6f68a8b93b96a4821575c.tar.bz2 -> qtdeclarative-0e1bed3c3e27d44d86d6f68a8b93b96a4821575c.tar.bz2
+SRC_URI=https://invent.kde.org/qt/qt/qtdeclarative/-/archive/89bf481b9b14f038c5e16421a7fce6dc6523785f/qtdeclarative-89bf481b9b14f038c5e16421a7fce6dc6523785f.tar.bz2 -> qtdeclarative-89bf481b9b14f038c5e16421a7fce6dc6523785f.tar.bz2
 _eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	kde.org	2c51d68845490f23d6f76d49cabdac5d	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	python-any-r1	54a3178500786b0a7ede4a23b7f2a6ad	python-utils-r1	d3f9ec72badd0291b655682d67876adc	qt5-build	ce4c233ea772c3d2901fdb552980f2f7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5
-_md5_=fe7df3e3f51187fe9f8b3fe087a6f6f6
+_md5_=c6ba08d3f2c89f5c7a7f6796e2f0515d
