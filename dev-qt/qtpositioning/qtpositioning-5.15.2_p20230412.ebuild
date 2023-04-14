@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="2a8a48e9101236f118c2c4f0d79fae9c9d7b3f2a"
+KDE_ORG_COMMIT="30fb93cf8521f2c0b3803903153d9034b7d7bcc2"
 
 QT5_MODULE="qtlocation"
 inherit qt5-build
 
 DESCRIPTION="Physical position determination library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtlocation/-/archive/2a8a48e9101236f118c2c4f0d79fae9c9d7b3f2a/qtlocation-2a8a48e9101236f118c2c4f0d79fae9c9d7b3f2a.tar.bz2 -> qtlocation-2a8a48e9101236f118c2c4f0d79fae9c9d7b3f2a.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtlocation/-/archive/30fb93cf8521f2c0b3803903153d9034b7d7bcc2/qtlocation-30fb93cf8521f2c0b3803903153d9034b7d7bcc2.tar.bz2 -> qtlocation-30fb93cf8521f2c0b3803903153d9034b7d7bcc2.tar.bz2"
 
 KEYWORDS="*"
 
