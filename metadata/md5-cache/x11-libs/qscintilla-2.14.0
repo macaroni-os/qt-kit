@@ -8,6 +8,6 @@ KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~x86
 LICENSE=GPL-3
 RDEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtprintsupport:5 dev-qt/qtwidgets:5 designer? ( dev-qt/designer:5 )
 SLOT=0/15
-SRC_URI=https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.4/QScintilla_src-2.13.4.tar.gz
+SRC_URI=https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.14.0/QScintilla_src-2.14.0.tar.gz
 _eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	multilib	d410501a125f99ffb560b0c523cd3d1e	qmake-utils	bdf97e69a34b864d6d545f4ec3143ff7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
 _md5_=a2725003d82ef426771d5e2fe7abbd58
