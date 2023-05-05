@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="9b5ab29cbba1908fd4928e2bda2b93e418e36187"
+KDE_ORG_COMMIT="837b5163e17edbd3a9f098e9a1ab73febab419b4"
 
 inherit qt5-build
 
 DESCRIPTION="SVG rendering library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtsvg/-/archive/9b5ab29cbba1908fd4928e2bda2b93e418e36187/qtsvg-9b5ab29cbba1908fd4928e2bda2b93e418e36187.tar.bz2 -> qtsvg-9b5ab29cbba1908fd4928e2bda2b93e418e36187.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtsvg/-/archive/837b5163e17edbd3a9f098e9a1ab73febab419b4/qtsvg-837b5163e17edbd3a9f098e9a1ab73febab419b4.tar.bz2 -> qtsvg-837b5163e17edbd3a9f098e9a1ab73febab419b4.tar.bz2"
 
 KEYWORDS="*"
 

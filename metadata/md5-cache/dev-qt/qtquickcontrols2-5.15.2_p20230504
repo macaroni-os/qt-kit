@@ -10,6 +10,6 @@ LICENSE=|| ( GPL-2 GPL-3 LGPL-3 ) FDL-1.3
 RDEPEND==dev-qt/qtcore-5.15.2* =dev-qt/qtdeclarative-5.15.2* =dev-qt/qtgui-5.15.2* widgets? ( =dev-qt/qtwidgets-5.15.2* ) =dev-qt/qtgraphicaleffects-5.15.2*
 RESTRICT=test
 SLOT=5/5.15
-SRC_URI=https://invent.kde.org/qt/qt/qtquickcontrols2/-/archive/86a84eaa74c4071e5750f23b6e9911762880d391/qtquickcontrols2-86a84eaa74c4071e5750f23b6e9911762880d391.tar.bz2 -> qtquickcontrols2-86a84eaa74c4071e5750f23b6e9911762880d391.tar.bz2
+SRC_URI=https://invent.kde.org/qt/qt/qtquickcontrols2/-/archive/68a48018e34322edaf611639710b3edbe389e8c2/qtquickcontrols2-68a48018e34322edaf611639710b3edbe389e8c2.tar.bz2 -> qtquickcontrols2-68a48018e34322edaf611639710b3edbe389e8c2.tar.bz2
 _eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	kde.org	2c51d68845490f23d6f76d49cabdac5d	multilib	d410501a125f99ffb560b0c523cd3d1e	qt5-build	ce4c233ea772c3d2901fdb552980f2f7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5
-_md5_=23fcc93edb0448c7d448c728d92fe4cf
+_md5_=39004f32fa1af78984ece1678d933950
