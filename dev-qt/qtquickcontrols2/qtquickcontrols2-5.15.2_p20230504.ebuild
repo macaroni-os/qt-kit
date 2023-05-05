@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="86a84eaa74c4071e5750f23b6e9911762880d391"
+KDE_ORG_COMMIT="68a48018e34322edaf611639710b3edbe389e8c2"
 
 inherit qt5-build
 
 DESCRIPTION="Set of next generation Qt Quick controls for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtquickcontrols2/-/archive/86a84eaa74c4071e5750f23b6e9911762880d391/qtquickcontrols2-86a84eaa74c4071e5750f23b6e9911762880d391.tar.bz2 -> qtquickcontrols2-86a84eaa74c4071e5750f23b6e9911762880d391.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtquickcontrols2/-/archive/68a48018e34322edaf611639710b3edbe389e8c2/qtquickcontrols2-68a48018e34322edaf611639710b3edbe389e8c2.tar.bz2 -> qtquickcontrols2-68a48018e34322edaf611639710b3edbe389e8c2.tar.bz2"
 
 KEYWORDS="*"
 
