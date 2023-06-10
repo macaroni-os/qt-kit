@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="5649efd376ed7dbb171905e9edebbd547d1f73eb"
+KDE_ORG_COMMIT="875994c48fc77480244cd3c10a5105dd94f073de"
 
 QT5_MODULE="qttools"
 inherit qt5-build
 
 DESCRIPTION="Tool for reporting diagnostic information about Qt and its environment"
-SRC_URI="https://invent.kde.org/qt/qt/qttools/-/archive/5649efd376ed7dbb171905e9edebbd547d1f73eb/qttools-5649efd376ed7dbb171905e9edebbd547d1f73eb.tar.bz2 -> qttools-5649efd376ed7dbb171905e9edebbd547d1f73eb.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qttools/-/archive/875994c48fc77480244cd3c10a5105dd94f073de/qttools-875994c48fc77480244cd3c10a5105dd94f073de.tar.bz2 -> qttools-875994c48fc77480244cd3c10a5105dd94f073de.tar.bz2"
 
 KEYWORDS="*"
 

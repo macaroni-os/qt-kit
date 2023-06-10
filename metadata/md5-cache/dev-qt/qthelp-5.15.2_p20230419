@@ -10,6 +10,6 @@ LICENSE=|| ( GPL-2 GPL-3 LGPL-3 ) FDL-1.3
 RDEPEND==dev-qt/qtcore-5.15.2*:5= =dev-qt/qtgui-5.15.2* =dev-qt/qtnetwork-5.15.2* =dev-qt/qtsql-5.15.2*[sqlite] =dev-qt/qtwidgets-5.15.2*
 RESTRICT=test
 SLOT=5/5.15
-SRC_URI=https://invent.kde.org/qt/qt/qttools/-/archive/5649efd376ed7dbb171905e9edebbd547d1f73eb/qttools-5649efd376ed7dbb171905e9edebbd547d1f73eb.tar.bz2 -> qttools-5649efd376ed7dbb171905e9edebbd547d1f73eb.tar.bz2
+SRC_URI=https://invent.kde.org/qt/qt/qttools/-/archive/875994c48fc77480244cd3c10a5105dd94f073de/qttools-875994c48fc77480244cd3c10a5105dd94f073de.tar.bz2 -> qttools-875994c48fc77480244cd3c10a5105dd94f073de.tar.bz2
 _eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	kde.org	2c51d68845490f23d6f76d49cabdac5d	multilib	d410501a125f99ffb560b0c523cd3d1e	qt5-build	ce4c233ea772c3d2901fdb552980f2f7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5
-_md5_=419fdbfa9832f75d1e18565ef3039e1a
+_md5_=2724cfdd6d4b0db27257eb431e80b782
