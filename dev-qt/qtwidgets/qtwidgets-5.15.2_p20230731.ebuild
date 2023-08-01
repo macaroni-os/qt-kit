@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="429a2c71afbcc74d4c9ae5c35481a118cb868851"
+KDE_ORG_COMMIT="495371f19b60f528cbf7a953d7bff5298887042a"
 
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="Set of components for creating classic desktop-style UIs for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/429a2c71afbcc74d4c9ae5c35481a118cb868851/qtbase-429a2c71afbcc74d4c9ae5c35481a118cb868851.tar.bz2 -> qtbase-429a2c71afbcc74d4c9ae5c35481a118cb868851.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/495371f19b60f528cbf7a953d7bff5298887042a/qtbase-495371f19b60f528cbf7a953d7bff5298887042a.tar.bz2 -> qtbase-495371f19b60f528cbf7a953d7bff5298887042a.tar.bz2"
 
 KEYWORDS="*"
 
