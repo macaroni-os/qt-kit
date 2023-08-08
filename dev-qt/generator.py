@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 async def generate(hub, **pkginfo):
 	if "qt5_module" not in pkginfo:
 		pkginfo["qt5_module"] = pkginfo["name"]
 	qt5_module = pkginfo["qt5_module"]
 	target_commit = await hub.pkgtools.fetch.get_page(
-		f"https://invent.kde.org/api/v4/projects/qt%2Fqt%2F{qt5_module}/repository/branches/kde%2F5.15", is_json=True
+		f"https://invent.kde.org/api/v4/projects/qt%2Fqt%2F{qt5_module}/repository/branches/kde%2F5.15", is_json=True, refresh_interval=timedelta(days=30)
 	)
 	commit_date = datetime.strptime(target_commit["commit"]["committed_date"], "%Y-%m-%dT%H:%M:%S.%f%z")
 	commit_hash = target_commit["commit"]["id"]
@@ -19,7 +19,7 @@ async def generate(hub, **pkginfo):
 	if pkginfo["name"] == "qtlocation":
 		qt5_module += "-mapboxgl"
 		mapboxgl_commit = await hub.pkgtools.fetch.get_page(
-			f"https://invent.kde.org/api/v4/projects/qt%2Fqt%2F{qt5_module}/repository/branches/upstream%2Fqt-staging", is_json=True
+			f"https://invent.kde.org/api/v4/projects/qt%2Fqt%2F{qt5_module}/repository/branches/upstream%2Fqt-staging", is_json=True, refresh_interval=timedelta(days=30)
 		)
 		mapboxgl_date = datetime.strptime(mapboxgl_commit["commit"]["committed_date"], "%Y-%m-%dT%H:%M:%S.%f%z")
 		mapboxgl_hash = mapboxgl_commit["commit"]["id"]
