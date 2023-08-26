@@ -95,6 +95,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.15.0-disable-fatal-warnings.patch" # bug 695446
 	"${FILESDIR}/${PN}-5.15.2_p20210224-disable-git.patch" # downstream snapshot fix
 	"${FILESDIR}/${PN}-5.15.2_p20210521-gcc11.patch" # by Fedora, bug 768261
+	"${FILESDIR}/${PN}-5.15.7-gcc12.patch" # FL-11546
 )
 
 S="${WORKDIR}/${P}-lts"
