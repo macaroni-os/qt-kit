@@ -9,8 +9,8 @@ C_COMMIT="8c0a9b4459f5200a24ab9e687a3fb32e975382e5"
 
 V8_VER="9.5.172"
 V8_COMMIT="4a03d61accede9dd0e3e6dc0456ff5a0e3f792b4"
-
-inherit multiprocessing python-any-r1 qt5-build
+MEMSAVER_FACTOR=4000000
+inherit multiprocessing python-any-r1 qt5-build memsaver
 
 DESCRIPTION="Library for rendering dynamic web content in Qt5 C++ and QML applications"
 HOMEPAGE="https://www.qt.io/"
@@ -18,11 +18,8 @@ SRC_URI="https://github.com/qt/${PN}/archive/refs/tags/v${PV}-lts.tar.gz -> ${P}
 	https://github.com/qt/${PN}-chromium/archive/${C_COMMIT}.tar.gz -> ${PN}-chromium-${PV}.tar.gz
 	https://github.com/v8/v8/archive/${V8_COMMIT}.tar.gz -> ${PN}-v8-${V8_VER}.tar.gz"
 
-# patchset based on https://github.com/chromium-ppc64le releases
-SRC_URI+=" ppc64? ( https://dev.gentoo.org/~gyakovlev/distfiles/${PN}-5.15.2-chromium87-ppc64le.tar.xz )"
-
 KEYWORDS="next"
-IUSE="alsa bindist designer geolocation kerberos pulseaudio +memsaver +system-ffmpeg +system-icu +jumbo-build widgets"
+IUSE="alsa bindist designer geolocation kerberos pulseaudio +system-ffmpeg +system-icu +jumbo-build widgets"
 REQUIRED_USE="designer? ( widgets )"
 
 RDEPEND="
@@ -88,7 +85,6 @@ BDEPEND="${PYTHON_DEPS}
 	dev-util/re2c
 	net-libs/nodejs[ssl(+)]
 	sys-devel/bison
-	ppc64? ( >=dev-util/gn-0.1807 )
 "
 
 PATCHES=(
@@ -104,47 +100,9 @@ src_unpack() {
 	default
 	rm -rf "${S}"/src/3rdparty
 	mv qtwebengine-chromium-* "${S}"/src/3rdparty || die
-	
-	# Unknown how upgrading v8 interplays with the ppc64 patches, so don't do it there.
-	if ! use ppc64; then
-		rm -rf "${S}"/src/3rdparty/chromium/v8
-		mv v8-* "${S}"/src/3rdparty/chromium/v8 || die
-	fi
 }
 
 src_prepare() {
-
-	if use memsaver; then
-
-		# limit number of jobs based on available memory:
-
-		mem=$(grep ^MemTotal /proc/meminfo | awk '{print $2}')
-		jobs=$((mem/1750000))
-
-		# don't use more jobs than physical cores:
-		if [ -e /sys/devices/system/cpu/possible ]; then
-			physical_cores=$(lscpu | grep 'Core(s) per socket:' | awk '{ print $NF }')
-			cpus=$(lscpu | grep '^Socket(s):' | awk '{ print $NF }')
-			# actual physical cores, without considering hyperthreading:
-			max_parallelism=$(( $physical_cores * $cpus ))
-		else
-			max_parallelism=999
-		fi
-
-		if [ ${jobs} -lt 1 ]; then
-			einfo "Using jobs setting of 1 (limited by memory)"
-			jobs=-j1
-		elif [ ${jobs} -gt ${max_parallelism} ]; then
-			einfo "Using jobs setting of ${max_parallelism} (limited by physical cores)"
-			jobs=-j${max_parallelism}
-		else
-			einfo "Using jobs setting of ${jobs} (limited by memory)"
-			jobs=-j${jobs}
-		fi
-	else
-		jobs="-j$(makeopts_jobs)"
-		einfo "Using default Portage jobs setting."
-	fi
 	# Final link uses lots of file descriptors.
 	ulimit -n 2048
 
@@ -190,27 +148,11 @@ src_prepare() {
 
 	qt5-build_src_prepare
 
-	# Unknown how upgrading v8 interplays with the ppc64 patches, so don't do it there.
-	if ! use ppc64; then
-		einfo "Patching for v8 ${V8_VER}"
-		eapply "${FILESDIR}/${PN}-5.15.7-v8-9.5.172.patch"
-	fi
+	einfo "Patching for v8 ${V8_VER}"
+	eapply "${FILESDIR}/${PN}-5.15.7-v8-9.5.172.patch"
 
-	# We need to generate ppc64 stuff as upstream does not ship it yet
-	if use ppc64; then
-		einfo "Patching for ppc64le and generating build files"
-		eapply "${FILESDIR}/qtwebengine-5.15.2-enable-ppc64.patch"
-		pushd src/3rdparty/chromium > /dev/null || die
-		eapply -p0 "${WORKDIR}/${PN}-ppc64le"
-		popd > /dev/null || die
-		pushd src/3rdparty/chromium/third_party/libvpx > /dev/null || die
-		mkdir -vp source/config/linux/ppc64 || die
-		mkdir -p source/libvpx/test || die
-		touch source/libvpx/test/test.mk || die
-		./generate_gni.sh || die
-		popd >/dev/null || die
 	# We need to patch for riscv64 as upstream does not ship it yet
-	elif use riscv64; then
+	if use riscv64; then
 		einfo "Patching for riscv64"
 		eapply "${FILESDIR}/qtwebengine-5.15.7-enable-riscv64-qtwebengine.patch"
 		pushd src/3rdparty > /dev/null || die
@@ -221,7 +163,7 @@ src_prepare() {
 
 src_configure() {
 	export NINJA_PATH=/usr/bin/ninja
-	export NINJAFLAGS="${NINJAFLAGS:-${jobs} -l$(makeopts_loadavg "${MAKEOPTS}" 0) -v}"
+	export NINJAFLAGS="${MAKEOPTS}"
 
 	local myqmakeargs=(
 		--
