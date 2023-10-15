@@ -7,7 +7,7 @@ inherit python-r1 qmake-utils
 
 DESCRIPTION="Python bindings for the Qt framework"
 HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt/ https://pypi.org/project/PyQt5/"
-SRC_URI="https://files.pythonhosted.org/packages/5c/46/b4b6eae1e24d9432905ef1d4e7c28b6610e28252527cdc38f2a75997d8b5/PyQt5-5.15.9.tar.gz -> PyQt5-5.15.9.tar.gz"
+SRC_URI="https://files.pythonhosted.org/packages/4d/5d/b8b6e26956ec113ad3f566e02abd12ac3a56b103fcc7e0735e27ee4a1df3/PyQt5-5.15.10.tar.gz -> PyQt5-5.15.10.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

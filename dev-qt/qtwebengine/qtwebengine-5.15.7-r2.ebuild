@@ -100,6 +100,9 @@ src_unpack() {
 	default
 	rm -rf "${S}"/src/3rdparty
 	mv qtwebengine-chromium-* "${S}"/src/3rdparty || die
+
+	rm -rf "${S}"/src/3rdparty/chromium/v8
+	mv v8-* "${S}"/src/3rdparty/chromium/v8 || die
 }
 
 src_prepare() {

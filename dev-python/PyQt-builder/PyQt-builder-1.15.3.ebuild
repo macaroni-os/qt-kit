@@ -7,7 +7,7 @@ inherit distutils-r1
 
 DESCRIPTION="The PEP 517 compliant PyQt build system"
 HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt-builder/ https://pypi.org/project/PyQt-builder/"
-SRC_URI="https://files.pythonhosted.org/packages/cb/f0/dc998da4a3358249a0e53927c831a52bfc2aa070a96e8164fffcf3dce349/PyQt-builder-1.15.2.tar.gz -> PyQt-builder-1.15.2.tar.gz
+SRC_URI="https://files.pythonhosted.org/packages/21/e9/5ee4d76d3f4c566b090924e36da067748db948a5faeff4142d149a4d5a15/PyQt-builder-1.15.3.tar.gz -> PyQt-builder-1.15.3.tar.gz
 "
 
 DEPEND=""
@@ -15,4 +15,4 @@ IUSE=""
 SLOT="0"
 LICENSE=""
 KEYWORDS="*"
-S="${WORKDIR}/PyQt-builder-1.15.2"
+S="${WORKDIR}/PyQt-builder-1.15.3"
