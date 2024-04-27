@@ -15,3 +15,15 @@ SLOT="0"
 LICENSE="BSD"
 KEYWORDS="*"
 S="${WORKDIR}/PyQt-builder-1.16.2"
+
+post_src_unpack() {
+	mv pyqt_builder-* "${S}"
+}
+
+src_prepare() {
+	# This is needed until we have setuptoos_scm-8
+	sed -i -e "s|^dynamic.*|version = \"${PV}\"|g" \
+		-e '/^version_file.*/d' \
+		pyproject.toml
+	distutils-r1_src_prepare
+}

@@ -4,7 +4,20 @@ simple_python_autogen_rule:
     python_compat: python3+
   generator: pypi-simple-1
   packages:
-    - PyQt-builder
+    - PyQt-builder:
+        body: |
+          post_src_unpack() {
+            mv pyqt_builder-* "${S}"
+          }
+
+          src_prepare() {
+            # This is needed until we have setuptoos_scm-8
+            sed -i -e "s|^dynamic.*|version = \"${PV}\"|g" \
+              -e '/^version_file.*/d' \
+              pyproject.toml
+            distutils-r1_src_prepare
+          }
+
     - PyQt5-sip:
         pypi_name: PyQt5_sip
 
