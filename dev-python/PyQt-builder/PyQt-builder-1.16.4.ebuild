@@ -7,14 +7,14 @@ inherit distutils-r1
 
 DESCRIPTION="The PyQt build system"
 HOMEPAGE="None https://pypi.org/project/PyQt-builder/"
-SRC_URI="https://files.pythonhosted.org/packages/f0/73/9e2755469405520b38162a4f594db1e0a28e2d29ab367acba1cd3c0783b5/pyqt_builder-1.16.3.tar.gz -> pyqt_builder-1.16.3.tar.gz"
+SRC_URI="https://files.pythonhosted.org/packages/e6/f5/daead7fd8ef3675ce55f4ef66dbe3287b0bdd74315f6b5a57718a020570b/pyqt_builder-1.16.4.tar.gz -> pyqt_builder-1.16.4.tar.gz"
 
 DEPEND=""
 IUSE=""
 SLOT="0"
 LICENSE="BSD"
 KEYWORDS="*"
-S="${WORKDIR}/PyQt-builder-1.16.3"
+S="${WORKDIR}/PyQt-builder-1.16.4"
 
 post_src_unpack() {
 	mv pyqt_builder-* "${S}"
