@@ -18,7 +18,7 @@ SRC_URI="https://github.com/qt/${PN}/archive/refs/tags/v${PV}-lts.tar.gz -> ${P}
 	https://github.com/qt/${PN}-chromium/archive/${C_COMMIT}.tar.gz -> ${PN}-chromium-${PV}.tar.gz
 	https://github.com/v8/v8/archive/${V8_COMMIT}.tar.gz -> ${PN}-v8-${V8_VER}.tar.gz"
 
-KEYWORDS="next"
+KEYWORDS="*"
 IUSE="alsa bindist designer geolocation kerberos pulseaudio +system-ffmpeg +system-icu +jumbo-build widgets"
 REQUIRED_USE="designer? ( widgets )"
 
