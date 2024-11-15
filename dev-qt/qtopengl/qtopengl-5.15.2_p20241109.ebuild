@@ -1,14 +1,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="068ba3d344af64de304a8a0506a038718ddf59d8"
+KDE_ORG_COMMIT="6f548e396c26d3a53188f331c82706133e4adb70"
 
 QT5_MODULE="qtbase"
 VIRTUALX_REQUIRED="test"
 inherit qt5-build
 
 DESCRIPTION="OpenGL support library for the Qt5 framework (deprecated)"
-SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/068ba3d344af64de304a8a0506a038718ddf59d8/qtbase-068ba3d344af64de304a8a0506a038718ddf59d8.tar.bz2 -> qtbase-068ba3d344af64de304a8a0506a038718ddf59d8.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtbase/-/archive/6f548e396c26d3a53188f331c82706133e4adb70/qtbase-6f548e396c26d3a53188f331c82706133e4adb70.tar.bz2 -> qtbase-6f548e396c26d3a53188f331c82706133e4adb70.tar.bz2"
 
 KEYWORDS="*"
 
