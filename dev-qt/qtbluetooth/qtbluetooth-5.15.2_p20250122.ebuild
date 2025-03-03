@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-KDE_ORG_COMMIT="c8a0f0b1f6dd4c63dbc015f63dc6856895e46ba3"
+KDE_ORG_COMMIT="a5780d4781714db639a9321bbdf0e8c66f577e39"
 
 QT5_MODULE="qtconnectivity"
 inherit qt5-build
 
 DESCRIPTION="Bluetooth support library for the Qt5 framework"
-SRC_URI="https://invent.kde.org/qt/qt/qtconnectivity/-/archive/c8a0f0b1f6dd4c63dbc015f63dc6856895e46ba3/qtconnectivity-c8a0f0b1f6dd4c63dbc015f63dc6856895e46ba3.tar.bz2 -> qtconnectivity-c8a0f0b1f6dd4c63dbc015f63dc6856895e46ba3.tar.bz2"
+SRC_URI="https://invent.kde.org/qt/qt/qtconnectivity/-/archive/a5780d4781714db639a9321bbdf0e8c66f577e39/qtconnectivity-a5780d4781714db639a9321bbdf0e8c66f577e39.tar.bz2 -> qtconnectivity-a5780d4781714db639a9321bbdf0e8c66f577e39.tar.bz2"
 
 KEYWORDS="*"
 
