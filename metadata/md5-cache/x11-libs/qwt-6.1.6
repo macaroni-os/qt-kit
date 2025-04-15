@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-qt/qtconcurrent:5 dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtprintsupport:5 dev-qt/qtwidgets:5 designer? ( dev-qt/designer:5 ) opengl? ( dev-qt/qtopengl:5 virtual/opengl ) svg? ( dev-qt/qtsvg:5 )
+DESCRIPTION=2D plotting library for Qt5
+EAPI=7
+HOMEPAGE=http://qwt.sourceforge.net/
+IUSE=designer doc examples mathml opengl svg
+KEYWORDS=*
+LICENSE=qwt mathml? ( LGPL-2.1 Nokia-Qt-LGPL-Exception-1.1 )
+RDEPEND=dev-qt/qtconcurrent:5 dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtprintsupport:5 dev-qt/qtwidgets:5 designer? ( dev-qt/designer:5 ) opengl? ( dev-qt/qtopengl:5 virtual/opengl ) svg? ( dev-qt/qtsvg:5 )
+SLOT=6/1.5
+SRC_URI=mirror://sourceforge/project/qwt/qwt/6.1.6/qwt-6.1.6.tar.bz2
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	multilib	d410501a125f99ffb560b0c523cd3d1e	qmake-utils	bdf97e69a34b864d6d545f4ec3143ff7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_md5_=14c4dd351c053da6eff7833429cadffe
