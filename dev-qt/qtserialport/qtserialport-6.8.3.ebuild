@@ -1,18 +1,19 @@
 # Distributed under the terms of the GNU General Public License v2
+# Autogen by MARK Devkit
 
 EAPI=7
-
 inherit qt6-build
 
-DESCRIPTION="Qt Serial Port provides basic functionality for configuration, I/O operations, and getting and setting the control signals of the RS-232 pinouts"
+DESCRIPTION="Provides classes to interact with hardware and virtual serial ports"
+HOMEPAGE="https://invent.kde.org/qt/qt/"
 SRC_URI="https://download.qt.io/archive/qt/6.8/6.8.3/submodules/qtserialport-everywhere-src-6.8.3.tar.xz -> qtserialport-everywhere-src-6.8.3.tar.xz"
-SLOT=6
-
+SLOT="6"
 KEYWORDS="*"
-IUSE=""
-
-DEPEND="
-	~dev-qt/qtbase-${PV}:6
+RDEPEND="dev-qt/qtbase:6
 	virtual/libudev:=
+	
 "
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+"
+
+# vim: filetype=ebuild

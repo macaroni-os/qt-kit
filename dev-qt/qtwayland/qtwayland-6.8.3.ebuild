@@ -1,40 +1,33 @@
 # Distributed under the terms of the GNU General Public License v2
+# Autogen by MARK Devkit
 
 EAPI=7
-
 inherit qt6-build
 
 DESCRIPTION="Wayland platform plugin for Qt"
+HOMEPAGE="https://invent.kde.org/qt/qt/"
 SRC_URI="https://download.qt.io/archive/qt/6.8/6.8.3/submodules/qtwayland-everywhere-src-6.8.3.tar.xz -> qtwayland-everywhere-src-6.8.3.tar.xz"
-SLOT=6
-
+SLOT="6"
 KEYWORDS="*"
 IUSE="qml vulkan"
-
-DEPEND="
-	dev-libs/wayland
-	~dev-qt/qtbase-${PV}:6[gui,vulkan=,wayland]
-	~dev-qt/qtsvg-${PV}:6
+RDEPEND="dev-libs/wayland
+	dev-qt/qtbase:6
+	dev-qt/qtsvg:6
 	dev-util/wayland-scanner
-	media-libs/libglvnd
+	media-libs/wayland-libglvnd
 	x11-libs/libxkbcommon
-	qml? ( ~dev-qt/qtdeclarative-${PV}:6 )
+	qml? ( dev-qt/qtdeclarative:6 )
 	vulkan? ( dev-util/vulkan-headers )
+	
 "
-RDEPEND="${DEPEND}"
-
+DEPEND="${RDEPEND}
+"
 src_configure() {
 	local mycmakeargs=(
-		$(cmake_use_find_package qml Qt6Quick)
+	  $(cmake_use_find_package qml Qt6Quick)
 	)
-
 	qt6-build_src_configure
 }
 
-src_test() {
-	# users' session setting may break tst_clientextension (bug #927030)
-	unset DESKTOP_SESSION XDG_CURRENT_DESKTOP
-	unset GNOME_DESKTOP_SESSION_ID KDE_FULL_SESSION
 
-	qt6-build_src_test
-}
+# vim: filetype=ebuild

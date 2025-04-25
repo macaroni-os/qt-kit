@@ -1,19 +1,20 @@
 # Distributed under the terms of the GNU General Public License v2
+# Autogen by MARK Devkit
 
 EAPI=7
-
 inherit qt6-build
 
-DESCRIPTION="The Qt Location module helps you create mapping solutions using data available from popular location service providers"
+DESCRIPTION="Location (places, maps, navigation) library for the Qt framework"
+HOMEPAGE="https://invent.kde.org/qt/qt/"
 SRC_URI="https://download.qt.io/archive/qt/6.8/6.8.3/submodules/qtlocation-everywhere-src-6.8.3.tar.xz -> qtlocation-everywhere-src-6.8.3.tar.xz"
-SLOT=6
-
+SLOT="6"
 KEYWORDS="*"
-IUSE=""
-
-RDEPEND="
-	~dev-qt/qtbase-${PV}:6
-	~dev-qt/qtdeclarative-${PV}:6
-	~dev-qt/qtpositioning-${PV}:6[qml]
+RDEPEND="dev-qt/qtbase:6
+	dev-qt/qtdeclarative:6
+	dev-qt/qtpositioning:6
+	
 "
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+"
+
+# vim: filetype=ebuild
