@@ -2,6 +2,7 @@
 # Autogen by MARK Devkit
 
 EAPI=7
+QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="Cross-platform application development framework"
