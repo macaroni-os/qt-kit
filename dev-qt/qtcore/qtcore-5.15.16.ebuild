@@ -62,12 +62,12 @@ src_install() {
 	)
 	for flag in ${flags[@]}; do
 	  cat >> "${D}"/${QT5_HEADERDIR}/QtCore/qconfig.h <<- _EOF_ || die
-	    #if defined(QT_NO_${flag}) && defined(QT_${flag})
-	    # undef QT_NO_${flag}
-	    #elif !defined(QT_NO_${flag}) && !defined(QT_${flag})
-	    # define QT_NO_${flag}
-	    #endif
-	  _EOF_
+		#if defined(QT_NO_${flag}) && defined(QT_${flag})
+		# undef QT_NO_${flag}
+		#elif !defined(QT_NO_${flag}) && !defined(QT_${flag})
+		# define QT_NO_${flag}
+		#endif
+		_EOF_
 	done
 }
 
