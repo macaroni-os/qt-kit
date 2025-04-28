@@ -18,7 +18,11 @@ src_compile() {
 	  "$@"
 }
 src_install() {
-	qtchooser_make INSTALL_ROOT="${D}" install
+	emake \
+	  CXX="$(tc-getCXX)" \
+	  LFLAGS="${LDFLAGS}" \
+	  prefix="${EPREFIX}/usr" \
+	  INSTALL_ROOT="${D}" install
 	# install configuration file
 	cat > "${T}/qt5-${CHOST}.conf" <<-_EOF_ || die
 	  $(qt5_get_bindir)
