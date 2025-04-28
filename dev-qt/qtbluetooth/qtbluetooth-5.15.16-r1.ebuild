@@ -20,6 +20,7 @@ DEPEND="${RDEPEND}
 	dev-qt/qtnetwork:5
 	
 "
+S="${WORKDIR}/qtconnectivity-everywhere-src-5.15.16"
 src_prepare() {
 	sed -i -e 's/nfc//' src/src.pro || die
 	qt_use_disable_mod qml quick src/src.pro
