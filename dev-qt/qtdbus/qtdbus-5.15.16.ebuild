@@ -10,8 +10,7 @@ SRC_URI="https://download.qt.io/archive/qt/5.15/5.15.16/submodules/qttools-every
 SLOT="5"
 KEYWORDS="*"
 RDEPEND="dev-qt/qtcore:5
-	dev-qt/qtdbus:5
-	dev-qt/qtxml:5
+	sys-apps/dbus
 	
 "
 DEPEND="${RDEPEND}
