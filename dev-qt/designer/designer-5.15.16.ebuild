@@ -14,7 +14,7 @@ RDEPEND="dev-qt/qtcore:5
 	dev-qt/qtgui:5[png]
 	dev-qt/qtnetwork:5
 	dev-qt/qtwidgets:5
-	dev-qt/qtxml:5[sqlite]
+	dev-qt/qtxml:5
 	declarative? ( dev-qt/qtdeclarative:5[widgets] )
 	
 "
