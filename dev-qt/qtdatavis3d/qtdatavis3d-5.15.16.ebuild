@@ -9,7 +9,7 @@ SRC_URI="https://download.qt.io/archive/qt/5.15/5.15.16/submodules/qtdatavis3d-e
 LICENSE="GPL-3"
 SLOT="5"
 KEYWORDS="*"
-IUSE="gles-only qml"
+IUSE="gles-only qml vulkan"
 RDEPEND="dev-qt/qtcore:5
 	dev-qt/qtgui:5[vulkan=]
 	qml? ( dev-qt/qtdeclarative:5 )
