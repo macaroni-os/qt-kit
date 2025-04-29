@@ -14,7 +14,7 @@ RDEPEND="dev-libs/wayland
 	dev-qt/qtbase:6
 	dev-qt/qtsvg:6
 	dev-util/wayland-scanner
-	media-libs/wayland-libglvnd
+	media-libs/libglvnd
 	x11-libs/libxkbcommon
 	qml? ( dev-qt/qtdeclarative:6 )
 	vulkan? ( dev-util/vulkan-headers )
