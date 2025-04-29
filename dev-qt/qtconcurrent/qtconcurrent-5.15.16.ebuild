@@ -2,6 +2,7 @@
 # Autogen by MARK Devkit
 
 EAPI=7
+QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="Multi-threading concurrence support library for the Qt5 framework"
