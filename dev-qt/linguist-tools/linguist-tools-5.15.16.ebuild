@@ -11,8 +11,8 @@ SLOT="5"
 KEYWORDS="*"
 IUSE="qml"
 RDEPEND="dev-qt/qtcore:5
-	dev-qt/qtxml:5[sqlite]
-	qml? ( dev-qt/qtdeclarative:5[widgets] )
+	dev-qt/qtxml:5
+	qml? ( dev-qt/qtdeclarative:5 )
 	
 "
 DEPEND="${RDEPEND}
