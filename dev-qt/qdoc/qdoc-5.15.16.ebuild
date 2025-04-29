@@ -9,6 +9,7 @@ DESCRIPTION="Qt documentation generator"
 SRC_URI="https://download.qt.io/archive/qt/5.15/5.15.16/submodules/qttools-everywhere-opensource-src-5.15.16.tar.xz -> qttools-everywhere-opensource-src-5.15.16.tar.xz"
 SLOT="5"
 KEYWORDS="*"
+IUSE="qml"
 RDEPEND="dev-qt/qtcore:5
 	qml? ( dev-qt/qtdeclarative:5 )
 	
