@@ -8,6 +8,7 @@ DESCRIPTION="Set of next generation Qt Quick controls for the Qt5 framework"
 SRC_URI="https://download.qt.io/archive/qt/5.15/5.15.16/submodules/qtquickcontrols2-everywhere-opensource-src-5.15.16.tar.xz -> qtquickcontrols2-everywhere-opensource-src-5.15.16.tar.xz"
 SLOT="5"
 KEYWORDS="*"
+IUSE="widgets"
 RDEPEND="dev-qt/qtcore:5
 	dev-qt/qtdeclarative:5
 	dev-qt/qtgui:5

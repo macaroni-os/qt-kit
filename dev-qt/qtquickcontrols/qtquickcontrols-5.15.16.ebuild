@@ -8,6 +8,7 @@ DESCRIPTION="Set of Qt Quick controls to create complete user interfaces (deprec
 SRC_URI="https://download.qt.io/archive/qt/5.15/5.15.16/submodules/qtquickcontrols-everywhere-opensource-src-5.15.16.tar.xz -> qtquickcontrols-everywhere-opensource-src-5.15.16.tar.xz"
 SLOT="5"
 KEYWORDS="*"
+IUSE="widgets"
 RDEPEND="dev-qt/qtcore:5
 	dev-qt/qtdeclarative:5
 	dev-qt/qtgui:5
