@@ -55,9 +55,30 @@ BDEPEND="
 	dev-python/sip[${PYTHON_USEDEP}]
 "
 
-IUSE="bluetooth dbus debug declarative designer examples gles2-only gui help location
-multimedia network opengl positioning printsupport sensors serialport speech
-sql +ssl svg testlib webchannel websockets widgets x11extras xmlpatterns
+IUSE="
+	bluetooth dbus debug declarative designer examples gles2-only gui help location
+	multimedia network opengl positioning printsupport sensors serialport speech
+	sql +ssl svg testlib webchannel websockets widgets x11extras xmlpatterns"
+REQUIRED_USE="
+	${PYTHON_REQUIRED_USE}
+	bluetooth? ( gui )
+	declarative? ( gui network )
+	designer? ( widgets )
+	help? ( gui widgets )
+	location? ( positioning )
+	multimedia? ( gui network )
+	opengl? ( gui widgets )
+	positioning? ( gui )
+	printsupport? ( gui widgets )
+	sensors? ( gui )
+	serialport? ( gui )
+	sql? ( widgets )
+	svg? ( gui widgets )
+	testlib? ( widgets )
+	webchannel? ( network )
+	websockets? ( network )
+	widgets? ( gui )
+	xmlpatterns? ( network )
 "
 SLOT="0"
 LICENSE="GPL-3"
