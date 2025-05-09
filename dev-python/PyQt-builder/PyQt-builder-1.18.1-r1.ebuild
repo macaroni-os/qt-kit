@@ -1,4 +1,5 @@
 # Distributed under the terms of the GNU General Public License v2
+# Autogen by MARK Devkit
 
 EAPI=7
 
@@ -6,10 +7,19 @@ PYTHON_COMPAT=( python3+ )
 inherit distutils-r1
 
 DESCRIPTION="The PyQt build system"
-HOMEPAGE="None https://pypi.org/project/PyQt-builder/"
-SRC_URI="https://files.pythonhosted.org/packages/0b/0a/e7684c054c3b85999354bb3be7ccbd6e6d9b751940cec8ecff5e7a8ea9f7/pyqt_builder-1.18.1.tar.gz -> pyqt_builder-1.18.1.tar.gz"
+HOMEPAGE="https://pypi.org/project/PyQt-builder/"
+SRC_URI="https://files.pythonhosted.org/packages/0b/0a/e7684c054c3b85999354bb3be7ccbd6e6d9b751940cec8ecff5e7a8ea9f7/pyqt_builder-1.18.1.tar.gz -> pyqt_builder-1.18.1.tar.gz
+"
+DEPEND="
+	<dev-python/sip-7[${PYTHON_USEDEP}]
+	>=dev-python/sip-6.7[${PYTHON_USEDEP}]
+"
+RDEPEND="
 
-DEPEND=""
+	<dev-python/sip-7[${PYTHON_USEDEP}]
+	>=dev-python/sip-6.7[${PYTHON_USEDEP}]
+"
+
 IUSE=""
 SLOT="0"
 LICENSE="BSD"
@@ -27,3 +37,4 @@ src_prepare() {
 		pyproject.toml
 	distutils-r1_src_prepare
 }
+
