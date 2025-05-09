@@ -1,25 +1,64 @@
 # Distributed under the terms of the GNU General Public License v2
+# Autogen by MARK Devkit
 
 EAPI=7
 
 PYTHON_COMPAT=( python3+ )
 inherit python-r1 qmake-utils
 
-DESCRIPTION="Python bindings for the Qt framework"
-HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt/ https://pypi.org/project/PyQt5/"
-SRC_URI="https://files.pythonhosted.org/packages/0e/07/c9ed0bd428df6f87183fca565a79fee19fa7c88c7f00a7f011ab4379e77a/PyQt5-5.15.11.tar.gz -> PyQt5-5.15.11.tar.gz"
+DESCRIPTION="Python bindings for the Qt cross platform application toolkit"
+HOMEPAGE="https://www.riverbankcomputing.com/software/pyqt/ https://pypi.org/project/PyQt5"
+SRC_URI="https://files.pythonhosted.org/packages/0e/07/c9ed0bd428df6f87183fca565a79fee19fa7c88c7f00a7f011ab4379e77a/PyQt5-5.15.11.tar.gz -> PyQt5-5.15.11.tar.gz
+"
+CDEPEND="
 
-LICENSE="GPL-3"
-SLOT="0"
-KEYWORDS="*"
+	${PYTHON_DEPS}
+	dev-qt/qtcore:5
+	dev-qt/qtxml:5
+	bluetooth? ( dev-qt/qtbluetooth:5 )
+	dbus? (
+		dev-python/dbus-python[${PYTHON_USEDEP}]
+		dev-qt/qtdbus:5
+	)
+	declarative? ( dev-qt/qtdeclarative:5[widgets?] )
+	designer? ( dev-qt/designer:5 )
+	gui? ( dev-qt/qtgui:5[gles2-only=] )
+	help? ( dev-qt/qthelp:5 )
+	location? ( dev-qt/qtlocation:5 )
+	multimedia? ( dev-qt/qtmultimedia:5[widgets?] )
+	network? ( dev-qt/qtnetwork:5[ssl=] )
+	opengl? ( dev-qt/qtopengl:5 )
+	positioning? ( dev-qt/qtpositioning:5 )
+	printsupport? ( dev-qt/qtprintsupport:5 )
+	sensors? ( dev-qt/qtsensors:5 )
+	serialport? ( dev-qt/qtserialport:5 )
+	speech? ( dev-qt/qtspeech:5 )
+	sql? ( dev-qt/qtsql:5 )
+	svg? ( dev-qt/qtsvg:5 )
+	testlib? ( dev-qt/qttest:5 )
+	webchannel? ( dev-qt/qtwebchannel:5 )
+	websockets? ( dev-qt/qtwebsockets:5 )
+	widgets? ( dev-qt/qtwidgets:5 )
+	x11extras? ( dev-qt/qtx11extras:5 )
+	xmlpatterns? ( dev-qt/qtxmlpatterns:5 )
+"
+DEPEND="${CDEPEND}
+"
+RDEPEND="
+	${CDEPEND}
+dev-python/PyQt5-sip:=[${PYTHON_USEDEP}]
+"
+BDEPEND="
+	dev-qt/qtcore:5
+	dbus? ( virtual/pkgconfig )
+	dev-python/PyQt-builder[${PYTHON_USEDEP}]
+	dev-python/sip[${PYTHON_USEDEP}]
+"
 
-# TODO: QtNfc, QtQuick3D, QtRemoteObjects
-IUSE="bluetooth dbus debug declarative designer examples gles2-only gui help location
+IUSE="
+	bluetooth dbus debug declarative designer examples gles2-only gui help location
 	multimedia network opengl positioning printsupport sensors serialport speech
 	sql +ssl svg testlib webchannel websockets widgets x11extras xmlpatterns"
-
-# The requirements below were extracted from the qmake_QT declarations
-# in project.py and from the output of 'grep -r "%Import " ${S}/sip'
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
 	bluetooth? ( gui )
@@ -41,49 +80,10 @@ REQUIRED_USE="
 	widgets? ( gui )
 	xmlpatterns? ( network )
 "
-
-# Minimal supported version of Qt.
-QT_PV="5.15:5"
-
-DEPEND="${PYTHON_DEPS}
-	>=dev-qt/qtcore-${QT_PV}
-	>=dev-qt/qtxml-${QT_PV}
-	bluetooth? ( >=dev-qt/qtbluetooth-${QT_PV} )
-	dbus? (
-		dev-python/dbus-python[${PYTHON_USEDEP}]
-		>=dev-qt/qtdbus-${QT_PV}
-	)
-	declarative? ( >=dev-qt/qtdeclarative-${QT_PV}[widgets?] )
-	designer? ( >=dev-qt/designer-${QT_PV} )
-	gui? ( >=dev-qt/qtgui-${QT_PV}[gles2-only=] )
-	help? ( >=dev-qt/qthelp-${QT_PV} )
-	location? ( >=dev-qt/qtlocation-${QT_PV} )
-	multimedia? ( >=dev-qt/qtmultimedia-${QT_PV}[widgets?] )
-	network? ( >=dev-qt/qtnetwork-${QT_PV}[ssl=] )
-	opengl? ( >=dev-qt/qtopengl-${QT_PV} )
-	positioning? ( >=dev-qt/qtpositioning-${QT_PV} )
-	printsupport? ( >=dev-qt/qtprintsupport-${QT_PV} )
-	sensors? ( >=dev-qt/qtsensors-${QT_PV} )
-	serialport? ( >=dev-qt/qtserialport-${QT_PV} )
-	speech? ( >=dev-qt/qtspeech-${QT_PV} )
-	sql? ( >=dev-qt/qtsql-${QT_PV} )
-	svg? ( >=dev-qt/qtsvg-${QT_PV} )
-	testlib? ( >=dev-qt/qttest-${QT_PV} )
-	webchannel? ( >=dev-qt/qtwebchannel-${QT_PV} )
-	websockets? ( >=dev-qt/qtwebsockets-${QT_PV} )
-	widgets? ( >=dev-qt/qtwidgets-${QT_PV} )
-	x11extras? ( >=dev-qt/qtx11extras-${QT_PV} )
-	xmlpatterns? ( >=dev-qt/qtxmlpatterns-${QT_PV} )
-"
-RDEPEND="${DEPEND}
-	>=dev-python/PyQt5-sip-12.9:=[${PYTHON_USEDEP}]
-"
-BDEPEND="
-	>=dev-python/PyQt-builder-1.10[${PYTHON_USEDEP}]
-	>=dev-python/sip-6.4[${PYTHON_USEDEP}]
-	>=dev-qt/qtcore-${QT_PV}
-	dbus? ( virtual/pkgconfig )
-"
+SLOT="0"
+LICENSE="GPL-3"
+KEYWORDS="*"
+S="${WORKDIR}/PyQt5-5.15.11"
 
 src_configure() {
 	pyqt_use_enable() {
@@ -96,7 +96,6 @@ src_configure() {
 			echo ${@/#/--enable=}
 		fi
 	}
-
 	configuration() {
 		local myconf=(
 			sip-build
@@ -150,26 +149,22 @@ src_configure() {
 	}
 	python_foreach_impl configuration
 }
-
 src_compile() {
 	python_foreach_impl run_in_build_dir default
 }
-
 src_install() {
 	installation() {
 		emake INSTALL_ROOT="${D}" install
 		python_optimize
-
 		local exe
 		for exe in "${D}$(python_get_scriptdir)"/*; do
 			python_doexe "${exe}"
 		done
 	}
 	python_foreach_impl run_in_build_dir installation
-
 	einstalldocs
-
 	if use examples; then
 		dodoc -r examples
 	fi
 }
+
