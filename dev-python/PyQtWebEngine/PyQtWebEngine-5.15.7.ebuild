@@ -13,7 +13,7 @@ SRC_URI="https://files.pythonhosted.org/packages/18/e8/19a00646866e950307f8cd738
 CDEPEND="
 
 	${PYTHON_DEPS}
-	dev-python/PyQt5:5[gui,network,printsupport,ssl,webchannel,widgets,${PYTHON_USEDEP}]
+	dev-python/PyQt5[gui,network,printsupport,ssl,webchannel,widgets,${PYTHON_USEDEP}]
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtwebengine:5[widgets]
