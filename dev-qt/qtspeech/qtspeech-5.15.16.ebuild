@@ -12,7 +12,7 @@ IUSE="alsa flite"
 RDEPEND="app-accessibility/speech-dispatcher
 	dev-qt/qtcore:5
 	flite? (
-	  >=app-accessibility/flite-2[alsa?]
+	  app-accessibility/flite[alsa?]
 	  dev-qt/qtmultimedia:5[alsa?]
 	  alsa? ( media-libs/alsa-lib )
 	)
