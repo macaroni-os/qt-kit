@@ -5,7 +5,7 @@ EAPI=7
 MY_P="${PN}-${PV/_pre20200309/-alpha4}" # present as upgrade over previous snapshot
 
 PYTHON_COMPAT=( python3+ )
-USE_RUBY="ruby25 ruby26 ruby27"
+USE_RUBY="ruby25 ruby26 ruby27 ruby31"
 inherit check-reqs cmake flag-o-matic python-any-r1 qmake-utils ruby-single toolchain-funcs
 
 DESCRIPTION="WebKit rendering library for the Qt5 framework (deprecated)"
