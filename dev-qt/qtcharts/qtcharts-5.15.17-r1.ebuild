@@ -9,7 +9,7 @@ SRC_URI="https://download.qt.io/archive/qt/5.15/5.15.17/submodules/qtcharts-ever
 LICENSE="GPL-3"
 SLOT="5"
 KEYWORDS="*"
-IUSE="qml"
+IUSE="qml vulkan"
 RDEPEND="dev-qt/qtcore:5
 	dev-qt/qtgui:5[vulkan=]
 	dev-qt/qtwidgets:5
