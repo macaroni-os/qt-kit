@@ -28,6 +28,7 @@ PATCHES=(
 IUSE="alsa bindist designer geolocation kerberos pulseaudio +system-ffmpeg +system-icu +jumbo-build widgets"
 REQUIRED_USE="designer? ( widgets )"
 BDEPEND="${PYTHON_DEPS}
+	dev-python/html5lib
 	dev-util/gperf
 	dev-util/ninja
 	dev-util/re2c
