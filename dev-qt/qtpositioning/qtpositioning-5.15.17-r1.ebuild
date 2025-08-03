@@ -10,7 +10,7 @@ SLOT="5"
 KEYWORDS="*"
 IUSE="geoclue +qml"
 RDEPEND="dev-qt/qtcore:5
-	geoclue? ( dev-qt/qtdbus:5
+	geoclue? ( dev-qt/qtdbus:5 )
 	qml? ( dev-qt/qtdeclarative:5 )
 	
 "
