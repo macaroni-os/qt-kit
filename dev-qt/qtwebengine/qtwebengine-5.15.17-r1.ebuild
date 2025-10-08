@@ -23,7 +23,7 @@ PATCHES=(
 	"${FILESDIR}/009-port-to-pipewire-0.3.patch"
 	"${FILESDIR}/010-widevine.patch"
 	"${FILESDIR}/011-clang16.patch"
-	"${FILESDIR}/qt5-webengine-python3.patch"
+	"${FILESDIR}/012-webengine-python3-5.15.17.patch"
 )
 IUSE="alsa bindist designer geolocation kerberos pulseaudio +system-ffmpeg +system-icu +jumbo-build widgets"
 REQUIRED_USE="designer? ( widgets )"
