@@ -16,7 +16,7 @@ RDEPEND="dev-qt/qtcore:5
 "
 DEPEND="${RDEPEND}
 "
-PDEPEND="geoclue? ( appmisc/geoclue:2.0 )
+PDEPEND="geoclue? ( app-misc/geoclue:2.0 )
 	
 "
 S="${WORKDIR}/qtlocation-everywhere-src-5.15.17"
