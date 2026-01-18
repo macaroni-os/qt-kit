@@ -1,0 +1,16 @@
+# Distributed under the terms of the GNU General Public License v2
+# Autogen by MARK Devkit
+
+EAPI=7
+
+PYTHON_COMPAT=( python3+ )
+inherit distutils-r1
+
+DESCRIPTION="The sip module support for PyQt6"
+HOMEPAGE="https://github.com/Python-SIP/sip"
+SRC_URI="https://files.pythonhosted.org/packages/e3/7d/d2916048e2e3960f68cb4e93907639844f7b8ff95897dcc98553776ccdfc/pyqt6_sip-13.11.0.tar.gz -> pyqt6_sip-13.11.0.tar.gz
+"
+SLOT="0"
+LICENSE="BSD-2-Clause"
+KEYWORDS="*"
+S="${WORKDIR}/pyqt6_sip-13.11.0"
