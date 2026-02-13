@@ -74,7 +74,10 @@ RDEPEND="sys-libs/zlib
 DEPEND="${RDEPEND}
 "
 PDEPEND="gui? (
-	  wayland? ( ~dev-qt/qtwayland-${PV}:6 )
+		wayland? (
+			~dev-qt/qtwayland-${PV}:6
+			!<dev-qt/qtwayland-6.10:6
+		)
 	)
 	
 "
