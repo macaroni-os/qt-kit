@@ -16,7 +16,7 @@ CDEPEND="
 	${PYTHON_DEPS}
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	dev-python/sip[${PYTHON_USEDEP}]
-	dev-qt/qtbase:6[-gles2-only,gui]
+	dev-qt/qtbase:6[gles2-only?,gui,vulkan?,wayland?]
 	dev-qt/qtdeclarative:6
 	dev-qt/qtsvg:6
 	dev-qt/qttools:6[assistant]
@@ -34,7 +34,9 @@ CDEPEND="
 	webchannel? ( dev-qt/qtwebchannel:6 )
 	websockets? ( dev-qt/qtwebsockets:6 )
 "
-DEPEND="${CDEPEND}
+DEPEND="
+${CDEPEND}
+
 "
 RDEPEND="
 	${CDEPEND}
@@ -48,14 +50,13 @@ BDEPEND="
 "
 IUSE="
 	bluetooth debug multimedia pdf positioning quick3d remoteobjects sensors serialport speech
-	sql statemachine webchannel websockets"
+	sql statemachine webchannel websockets vulkan gles2-only wayland"
 SLOT="0"
 LICENSE="GPL-3"
 KEYWORDS="*"
 S="${WORKDIR}/pyqt6-6.10.2"
 
 python_configure_all() {
-
 		pyqt_use_enable() {
 				use "$1" || return
 
@@ -71,11 +72,8 @@ python_configure_all() {
 				--qmake-setting="$(qt6_get_qmake_args)"
 				--verbose
 				--confirm-license
-
 				$(usex debug '--debug --qml-debug' '')
 				--no-designer-plugin
-				--disabled-feature=PyQt_OpenGL_ES2
-				--disabled-feature=PyQt_Vulka
 				--disabled-feature=PyQt_Permissions
 				--enable=QtCore
 				--enable=QtDBus
@@ -93,6 +91,9 @@ python_configure_all() {
 				--enable=QtTest
 				--enable=QtWidgets
 				--enable=QtXml
+				$(usex vulkan '' '--disabled-feature=PyQt_Vulkan')
+				$(usex wayland '' '--disabled-feature=PyQt_Wayland')
+				$(usex gles2-only '' '--disabled-feature=PyQt_OpenGL_ES2')
 				$(pyqt_use_enable bluetooth QtBluetooth)
 				$(pyqt_use_enable bluetooth QtNfc)
 				$(pyqt_use_enable multimedia Multimedia)
@@ -111,7 +112,6 @@ python_configure_all() {
 				$(pyqt_use_enable websockets QtWebSockets)
 		)
 }
-
 python_install_all() {
 		einstalldocs
 }
